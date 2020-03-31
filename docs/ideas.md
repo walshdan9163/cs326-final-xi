@@ -18,3 +18,4 @@ While our site is in some ways related to archive.org - it would be innovative i
 - Search function for both tags and users (tag ex: "Apple" user ex: "John Smith").
 - Ability for users to view other's collection pages, read descriptions of each item in the collection, view images associated with each item, or follow links associated with those items.
 - User addition of software/hardware to their personal collection. This data would include media such as images, links, and tags associated with a piece of software/hardware.
+- Ability to "trade" collection items with other users.
