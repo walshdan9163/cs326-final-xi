@@ -10,4 +10,8 @@ While our site is in some ways related to archive.org - it would be innovative i
 - Ability to "trade" collection items with other users.
 
 # Division of Labor:
+### Jackson Weber:
 
+### Dan Walsh:
+
+### Will Hammond:
