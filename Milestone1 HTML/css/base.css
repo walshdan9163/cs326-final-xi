@@ -1,9 +1,16 @@
 /**
+ * Imports
+ */
+
+@import url('https://fonts.googleapis.com/css?family=VT323&display=swap');
+
+/**
  * Globals
  */
 
 .parent-container {
     min-height: 100vh;
+    font-family: 'VT323', monospace;
 }
 
 main {
