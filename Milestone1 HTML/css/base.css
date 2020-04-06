@@ -164,6 +164,12 @@ p {
     left: 0.1rem;
 }
 
+.list-group{
+    overflow:hidden; 
+    overflow-y:scroll;
+    max-height: 40vh;
+}
+
 .list-group-item {
     background-color: #C3C3C3;
 }
