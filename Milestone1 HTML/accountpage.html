@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Account Page</title>
+		<title>Homepage</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -24,92 +24,84 @@
 							<a class="nav-link" href="#"><i data-feather="home"></i>Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="./accountpage.html"><i data-feather="user"></i>My Profile</a>
+							<a class="nav-link" href="#"><i data-feather="user"></i>My Profile</a>
 						</li>
 					</ul>
 				</nav>
 			</header>
+
 			<main class="flex-grow-1">
 				<div class="container">
-					<div id="centralContainer" class="container mb-5">
-						<div id="searchBarContainer" class="mb-5-md">
-							<div class="row">
-								<div class="col-md-6 offset-md-3">
-									<div class="card mt-5">
-										<div class="card-body">
-											<h5 class="card-title"><i data-feather="home"></i> Home Page</h5>
-											<div class="text-center mb-5 mt-3">
-												<h2>The Retro Tech Connection</h2>
-											</div>
-											<div class="input-group d-flex">
-												<div class="win-95-outer-border--selected flex-grow-1 ml-3 mr-3 mb-3">
-													<input type="text" class="form-control" id="" placeholder="Search">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="infoView">
-							<div class="container-fluid mt-5 mb-5">
-								<div class="row no-gutter">
-									<div id="userHardware" class="col-sm-6 pl-0">
-										<div class="card">
-											<div class="card-body">
-												<div class="card-title">
-													<h5 class="card-title"><i data-feather="hard-drive"></i> Your Hardware:</h5>
-												</div>
-												<div class="list-group">
-													<a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-													<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-													<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-													<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-													<a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div id="userTrades" class="col-sm-6 pr-0">
-										<div class="card">
-											<div class="card-body">
-												<div class="card-title">
-													<h5 class="card-title"><i data-feather="users"></i> Trades:</h5>
-												</div>
-												<div class="ist-group">
-													<a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-													<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-													<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-													<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-													<a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div id="userSoftware">
-								<div class="card">
+					<div id="searchBarContainer" class="mb-5-md">
+						<div class="row">
+							<div class="col-md-6 offset-md-3">
+								<div class="card mt-5">
 									<div class="card-body">
-										<div class="card-title">
-											<h5 class="card-title"><i data-feather="save"></i> Your Software</h5>
+										<h5 class="card-title"><i data-feather="home"></i> Home Page</h5>
+										<div class="text-center mb-5 mt-3">
+											<h2>The Retro Tech Connection</h2>
 										</div>
-										<div class="list-group">
-											<a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-											<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-											<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-											<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-											<a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+										<div class="input-group d-flex">
+											<div class="win-95-outer-border--selected flex-grow-1 ml-3 mr-3 mb-3">
+												<input type="text" class="form-control" id="" placeholder="Search">
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
+					<div class="row">
+						<div id="hardware" class="col-md-4">
+							<div class="card mt-5">
+								<div class="card-body">
+									<h5 class="card-title"><i data-feather="hard-drive"></i> Your Hardware</h5>
+									<div class="list-group">
+										<a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+										<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+										<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+										<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+										<a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="software" class="col-md-4">
+							<div class="card  mt-5">
+								<div class="card-body">
+									<h5 class="card-title"><i data-feather="users"></i> Your Trades</h5>
+									<div class="list-group">
+										<a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+										<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+										<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+										<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+										<a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+									</div>
+								</div>
+							</div>
+                        </div>
+                        
+                        <div id="software" class="col-md-4">
+							<div class="card  mt-5">
+								<div class="card-body">
+									<h5 class="card-title"><i data-feather="save"></i> YourSoftware</h5>
+									<div class="list-group">
+										<a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+										<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+										<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+										<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+										<a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+									</div>
+								</div>
+							</div>
+                        </div>
+					</div>
 				</div>
-				
 			</main>
 		</div>
+
 		<script>
 			feather.replace()
 		</script>
