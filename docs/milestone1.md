@@ -14,8 +14,24 @@ While our site is in some ways related to archive.org - it would be innovative i
 
 ### Dan Walsh: User's Account page design.
 
-### Will Hammond: Hardware/Software page design.
+### Will Hammond: Tech page design.
 
 # Wireframes
+![](images/Homepage%20Wireframe.jpg)
+Original Homepage wireframe
+
+![](images/UserAccount%20Wireframe.jpg)
+Original Account Page wireframe
+
+![](images/TechPage%20Wireframe.jpg)
+Original Tech Page wireframe
 
 # HTML/CSS/Bootstrap Mockups
+![](images/Homepage.png)
+Homepage mockup
+
+![](images/Account%20Page.png)
+Account page mockup
+
+![](images/Tech%20Page.png)
+Tech page mockup
