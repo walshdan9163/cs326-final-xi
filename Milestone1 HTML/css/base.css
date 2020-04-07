@@ -30,6 +30,10 @@ p {
     color: #050505;
 }
 
+p {
+    padding: 12px 20px;
+}
+
 /**
  * Forms
  */
