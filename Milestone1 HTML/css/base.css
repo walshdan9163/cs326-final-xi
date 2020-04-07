@@ -10,7 +10,7 @@
 
 .parent-container {
     min-height: 100vh;
-    font-family: 'VT323', monospace;
+    font-family: 'VT323', monospace, sans-serif;
 }
 
 main {
