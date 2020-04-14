@@ -11,36 +11,46 @@ While our site is in some ways related to archive.org - it would be innovative i
 
 # Data Involved:
 USER:
-  id
-  password
-  email
-  REFERENCE LIST: HARDWARE
-  REFERENCE LIST: SOFTWARE
- 
+<ul>
+  <li>id</li>
+  <li>password</li>
+  <li>email</li>
+  <li>REFERENCE LIST: HARDWARE</li>
+  <li>REFERENCE LIST: SOFTWARE</li>
+</ul>
 HARDWARE:
-  id
-  name
-  description
-  REFERENCE LIST: TAG
-  REFERENCE LIST: MEDIA
+<ul>
+  <li>id</li>
+  <li>name</li>
+  <li>image</li>
+  <li>description</li>
+  <li>REFERENCE LIST: TAG</li>
+  <li>REFERENCE LIST: MEDIA</li>
+</ul>
 
 SOFTWARE:
-  id
-  name
-  image
-  description
-  REFERENCE LIST: HARDWARE
-  REFERENCE LIST: TAG
-  REFERENCE LIST: MEDIA
+<ul>
+  <li>id</li>
+  <li>name</li>
+  <li>image</li>
+  <li>description</li>
+  <li>REFERENCE LIST: TAG</li>
+  <li>REFERENCE LIST: MEDIA</li>
+</ul>
   
 MEDIA:
-  id
-  name
-  URL to File
-  REFERENCE LIST: TAG
+<ul>
+  <li>id</li>
+  <li>name</li>
+  <li>image</li>
+  <li>URL to File</li>
+  <li>REFERENCE LIST: TAG</li>
+</ul>
   
 TAG:
-  name
+<ul>
+  <li>name</li>
+</ul>
   
 
 # Division of Labor:
