@@ -9,6 +9,40 @@ While our site is in some ways related to archive.org - it would be innovative i
 - User addition of software/hardware to their personal collection. This data would include media such as images, links, and tags associated with a piece of software/hardware.
 - Ability to "trade" collection items with other users.
 
+# Data Involved:
+USER:
+  id
+  password
+  email
+  REFERENCE LIST: HARDWARE
+  REFERENCE LIST: SOFTWARE
+ 
+HARDWARE:
+  id
+  name
+  description
+  REFERENCE LIST: TAG
+  REFERENCE LIST: MEDIA
+
+SOFTWARE:
+  id
+  name
+  image
+  description
+  REFERENCE LIST: HARDWARE
+  REFERENCE LIST: TAG
+  REFERENCE LIST: MEDIA
+  
+MEDIA:
+  id
+  name
+  URL to File
+  REFERENCE LIST: TAG
+  
+TAG:
+  name
+  
+
 # Division of Labor:
 ### Jackson Weber: Original wireframes, homepage design.
 
