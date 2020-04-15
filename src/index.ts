@@ -1,17 +1,20 @@
 import express from "express";
 import HardwareController from "./controllers/HardwareController";
 import SoftwareController from "./controllers/SoftwareController";
+import MediaController from "./controllers/MediaController";
+import TagController from "./controllers/TagController";
+import UserController from "./controllers/UserController";
 import Response from "./Response";
 
 const app = express();
-const port = 8080; // default port to listen
+const port = 8080;
 
 app.use(express.json());
 
-// define a route handler for the default home page
+// Define a route handler for the default home page
 app.get("/", (req, res) => {
     res.send( "Hello world!" );
-} );
+});
 
 // Hardware: Create
 app.post("/api/hardware", (req, res) => {
@@ -29,6 +32,8 @@ app.get("/api/hardware/:hardwareId", (req, res) => {
     res.send(response.toString());
 });
 
+// TODO: Hardware: Get many
+
 // Software: Create
 app.post("/api/software", (req, res) => {
     const controller = new SoftwareController();
@@ -44,6 +49,50 @@ app.get("/api/software/:softwareId", (req, res) => {
 
     res.send(response.toString());
 });
+
+// TODO: Software: Get many
+
+// Media: Create
+app.post("/api/media", (req, res) => {
+    const controller = new MediaController();
+    const response: Response = controller.post(req.body);
+
+    res.send(response.toString());
+});
+
+// Tag: Create
+app.post("/api/tag", (req, res) => {
+    const controller = new TagController();
+    const response: Response = controller.post(req.body);
+
+    res.send(response.toString());
+});
+
+// User: Create
+app.post("/api/user", (req, res) => {
+    const controller = new UserController();
+    const response: Response = controller.post(req.body);
+
+    res.send(response.toString());
+});
+
+// User: Get one
+app.get("/api/user/:userId", (req, res) => {
+    const controller = new UserController();
+    const response: Response = controller.get(parseInt(req.params.userId, 10));
+
+    res.send(response.toString());
+});
+
+// TODO: User: Associate hardware to user account.
+
+// TODO: User: Associate software to user account.
+
+// TODO: User: Delete (un-associate) hardware from user account.
+
+// TODO: User: Delete (un-associate) software from user account.
+
+// TODO: Media: Delete by ID.
 
 // start the Express server
 app.listen(port, () => {

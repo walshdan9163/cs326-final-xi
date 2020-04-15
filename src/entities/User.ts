@@ -4,6 +4,7 @@ import Software from "./software";
 export default interface User {
     id: number;
     email: string;
+    password: string;
     hardware?: Hardware[];
     software?: Software[];
 }
