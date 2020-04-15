@@ -32,7 +32,13 @@ app.get("/api/hardware/:hardwareId", (req, res) => {
     res.send(response.toString());
 });
 
-// TODO: Hardware: Get many
+// Hardware: Get many
+app.get("/api/hardware", (req, res) => {
+    const controller = new HardwareController();
+    const response: Response = controller.getMany();
+
+    res.send(response.toString());
+});
 
 // Software: Create
 app.post("/api/software", (req, res) => {

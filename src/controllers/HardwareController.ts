@@ -15,6 +15,15 @@ export default class HardwareController extends AbstractController {
         return new Response(hardware, 200)
     }
 
+    public getMany(): Response {
+        const hardware: Hardware[] = [
+            {id: 1, name: "Apple II", description: "The Apple II"},
+            {id: 2, name: "IBM PC", description: "The IBM PC"}
+        ];
+
+        return new Response(hardware, 200);
+    }
+
     // Defines the POST (creation) for a piece of hardware.
     public post(data: any): Response {
         if (!((data as Hardware).name)) {
