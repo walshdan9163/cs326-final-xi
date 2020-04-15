@@ -21,7 +21,8 @@ POST api/software - Create a new piece of software.<br/>
 POST api/media - Create a new piece of media.<br/>
 POST api/tag - Creates a new tag.<br/>
 POST api/user/[id]/hardware - Add hardware to user account.<br/>
-POST api/user/[id]/software - Add software to a user account.
+POST api/user/[id]/software - Add software to a user account.<br/>
+POST api/user - Create a new user.
 
 READ API
 --------
