@@ -30,7 +30,9 @@ GET requests that facilitate the viewing of information about objects.
 ### REST Calls ###
 GET /user/[id] - View a user account/profile.<br/>
 GET /hardware?sort=popular&page=2 - Gets list of hardware (paginated, can also be sorted for display on the front page).<br/>
+GET /software?sort=popular&page=1 - Gets list of software (paginated/sorted)<br/>
 GET /hardware/[id] - Gets single piece of hardware.<br/>
+GET /software/[id] - Gets a single piece of software.<br/>
 GET /tag/[name] - view the results associated with a tag beings searched.
 
 UPDATE API
