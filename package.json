@@ -1,0 +1,38 @@
+{
+  "name": "cs326-final-xi",
+  "version": "1.0.0-milestone2",
+  "description": "Repository that will be used for Spring 2020 CS 326 semester project.",
+  "main": "dist/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walshdan9163/cs326-final-xi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/walshdan9163/cs326-final-xi/issues"
+  },
+  "homepage": "https://github.com/walshdan9163/cs326-final-xi#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.6",
+    "@types/node": "^13.11.1",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3"
+  }
+}
