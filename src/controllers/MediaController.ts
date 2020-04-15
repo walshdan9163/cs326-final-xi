@@ -4,7 +4,7 @@ import Response from "../Response";
 
 export default class MediaController extends AbstractController {
 
-    // Defines the GET method for a piece of media.
+    // Defines the GET by ID method for a piece of media.
     public get(id: number): Response {
         const media: Media = {
             id,

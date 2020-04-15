@@ -4,7 +4,7 @@ import Response from "../Response";
 
 export default class SoftwareController extends AbstractController {
 
-    // Defines the GET method for a piece of software.
+    // Defines the GET by ID method for a piece of software.
     public get(id: number): Response {
         const software: Software = {
             id,

@@ -4,7 +4,7 @@ import Response from "../Response";
 
 export default class UserController extends AbstractController {
 
-    // Defines the GET method for a user.
+    // Defines the GET by ID method for a user.
     public get(id: number): Response {
         const user: User = {
             id,

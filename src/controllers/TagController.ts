@@ -4,7 +4,7 @@ import Response from "../Response";
 
 export default class TagController extends AbstractController {
 
-    // Defines the GET method for a tag.
+    // Defines the GET by ID method for a tag.
     public get(id: number): Response {
         const media: Tag = {
             name: "Apple"

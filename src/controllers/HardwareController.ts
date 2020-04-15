@@ -4,7 +4,7 @@ import Response from "../Response";
 
 export default class HardwareController extends AbstractController {
 
-    // Defines the GET method for a piece of hardware.
+    // Defines the GET by ID method for a piece of hardware.
     public get(id: number): Response {
         const hardware: Hardware = {
             id,
@@ -22,7 +22,8 @@ export default class HardwareController extends AbstractController {
         }
 
         return new Response({
-            id: 1
+            id: 1,
+
         }, 201);
     }
 };
