@@ -19,13 +19,14 @@ POST requests that facilitate the creation or updating of objects.
 POST /hardware - Create a new piece of hardware.<br/>
 POST /software - Create a new piece of software.<br/>
 POST /media - Create a new piece of media.<br/>
+POST /tag - Creates a new tag.<br/>
 POST /user/[id]/hardware - Add hardware to user account.<br/>
 POST /user/[id]/software - Add software to a user account.
 
 READ API
 --------
 ### Overview ###
-GET requests that facilitate the viewing of information about objects.
+GET requests that facilitate the viewing of information about objects. Specific GET requests for Media should not be needed because media will be retrieved with the associated hardware/software.
 
 ### REST Calls ###
 GET /user/[id] - View a user account/profile.<br/>
