@@ -22,7 +22,6 @@ HARDWARE:
 <ul>
   <li>id</li>
   <li>name</li>
-  <li>image</li>
   <li>description</li>
   <li>REFERENCE LIST: TAG</li>
   <li>REFERENCE LIST: MEDIA</li>
@@ -32,7 +31,6 @@ SOFTWARE:
 <ul>
   <li>id</li>
   <li>name</li>
-  <li>image</li>
   <li>description</li>
   <li>REFERENCE LIST: TAG</li>
   <li>REFERENCE LIST: MEDIA</li>

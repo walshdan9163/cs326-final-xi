@@ -16,22 +16,26 @@ CREATE API
 POST requests that facilitate the creation or updating of objects.
 
 ### REST Calls ###
-POST /hardware - Create a new piece of hardware.<br/>
-POST /software - Create a new piece of software.<br/>
-POST /media - Create a new piece of media.<br/>
-POST /user/[id]/hardware - Add hardware to user account.<br/>
-POST /user/[id]/software - Add software to a user account.
+POST api/hardware - Create a new piece of hardware.<br/>
+POST api/software - Create a new piece of software.<br/>
+POST api/media - Create a new piece of media.<br/>
+POST api/tag - Creates a new tag.<br/>
+POST api/user/[id]/hardware - Add hardware to user account.<br/>
+POST api/user/[id]/software - Add software to a user account.<br/>
+POST api/user - Create a new user.
 
 READ API
 --------
 ### Overview ###
-GET requests that facilitate the viewing of information about objects.
+GET requests that facilitate the viewing of information about objects. Specific GET requests for Media should not be needed because media will be retrieved with the associated hardware/software.
 
 ### REST Calls ###
-GET /user/[id] - View a user account/profile.<br/>
-GET /hardware?sort=popular&page=2 - Gets list of hardware (paginated, can also be sorted for display on the front page).<br/>
-GET /hardware/[id] - Gets single piece of hardware.<br/>
-GET /tag/[name] - view the results associated with a tag beings searched.
+GET api/user/[id] - View a user account/profile.<br/>
+GET api/hardware?sort=popular&page=2 - Gets list of hardware (paginated, can also be sorted for display on the front page).<br/>
+GET api/software?sort=popular&page=1 - Gets list of software (paginated/sorted)<br/>
+GET api/hardware/[id] - Gets single piece of hardware.<br/>
+GET api/software/[id] - Gets a single piece of software.<br/>
+GET api/tag/[name] - view the results associated with a tag beings searched.
 
 UPDATE API
 -----------
@@ -47,6 +51,6 @@ DELETE API
 DELETE requests that facilitate the deletion of objects.
 
 ### REST Calls ###
-DELETE /user/[user:id]/hardware/[hardware:id] - Delete a piece of hardware from a user account.<br/>
-DELETE /user/[user:id]/software/[software:id] - Delete a piece of software from a user account.<br/>
-DELETE /media/[id] - Delete media (should look for references and delete from that content).
+DELETE api/user/[user:id]/hardware/[hardware:id] - Delete a piece of hardware from a user account.<br/>
+DELETE api/user/[user:id]/software/[software:id] - Delete a piece of software from a user account.<br/>
+DELETE api/media/[id] - Delete media (should look for references and delete from that content).
