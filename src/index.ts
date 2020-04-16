@@ -56,7 +56,13 @@ app.get("/api/software/:softwareId", (req, res) => {
     res.send(response.toString());
 });
 
-// TODO: Software: Get many
+// Software: Get many
+app.get("/api/software", (req, res) => {
+    const controller = new SoftwareController();
+    const response: Response = controller.getMany();
+
+    res.send(response.toString());
+});
 
 // Media: Create
 app.post("/api/media", (req, res) => {
