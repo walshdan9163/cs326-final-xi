@@ -20,7 +20,7 @@ export default class TagController extends AbstractController {
         }
 
         return new Response({
-            id: 1
+            name: data.name
         }, 201);
     }
 };

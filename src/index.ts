@@ -56,7 +56,13 @@ app.get("/api/software/:softwareId", (req, res) => {
     res.send(response.toString());
 });
 
-// TODO: Software: Get many
+// Software: Get many
+app.get("/api/software", (req, res) => {
+    const controller = new SoftwareController();
+    const response: Response = controller.getMany();
+
+    res.send(response.toString());
+});
 
 // Media: Create
 app.post("/api/media", (req, res) => {
@@ -90,7 +96,13 @@ app.get("/api/user/:userId", (req, res) => {
     res.send(response.toString());
 });
 
-// TODO: User: Associate hardware to user account.
+// User: Associate hardware to user account.
+app.post("/api/:userId/hardware", (req, res) => {
+   const controller = new UserController();
+   const response: Response = controller.associateHardware(req.body, req.params.userId);
+
+   res.send(response.toString());
+});
 
 // TODO: User: Associate software to user account.
 
