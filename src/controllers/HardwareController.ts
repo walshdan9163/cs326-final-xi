@@ -32,6 +32,8 @@ export default class HardwareController extends AbstractController {
 
         return new Response({
             id: 1,
+            name: data.name,
+            description: data.description
 
         }, 201);
     }

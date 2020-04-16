@@ -22,7 +22,8 @@ export default class UserController extends AbstractController {
         }
 
         return new Response({
-            id: 1
+            id: 1,
+            email: data.email
         }, 201);
     }
 };

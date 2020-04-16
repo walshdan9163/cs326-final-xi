@@ -22,7 +22,9 @@ export default class MediaController extends AbstractController {
         }
 
         return new Response({
-            id: 1
+            id: 1,
+            name: data.name,
+            URL: data.URL
         }, 201);
     }
 };
