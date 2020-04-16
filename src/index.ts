@@ -90,7 +90,13 @@ app.get("/api/user/:userId", (req, res) => {
     res.send(response.toString());
 });
 
-// TODO: User: Associate hardware to user account.
+// User: Associate hardware to user account.
+app.post("/api/:userId/hardware", (req, res) => {
+   const controller = new UserController();
+   const response: Response = controller.associateHardware(req.body, req.params.userId);
+
+   res.send(response.toString());
+});
 
 // TODO: User: Associate software to user account.
 
