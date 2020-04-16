@@ -110,7 +110,7 @@ app.post("/api/:userId/software", (req, res) => {
     const response: Response = controller.associateSoftware(req.body, req.params.userId);
 
     res.send(response.toString());
- });
+});
 
 // TODO: User: Delete (un-associate) hardware from user account.
 
