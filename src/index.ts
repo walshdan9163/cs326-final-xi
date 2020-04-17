@@ -116,7 +116,13 @@ app.post("/api/:userId/software", (req, res) => {
 
 // TODO: User: Delete (un-associate) software from user account.
 
-// TODO: Media: Delete by ID.
+// Media: Delete by ID.
+app.post("/api/:mediaId/delete", (req, res) => {
+    const controller = new MediaController();
+    const response: Response = controller.delete(req.params.mediaId);
+
+    res.send(response.toString());
+});
 
 // start the Express server
 app.listen(port, () => {

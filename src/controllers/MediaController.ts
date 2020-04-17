@@ -15,6 +15,22 @@ export default class MediaController extends AbstractController {
         return new Response(media, 200)
     }
 
+    // Deletes media by ID
+    public delete(mediaId: string): Response {
+        // check if media exists, mocked up because no DB
+        const mockMedia: Media = {
+            id: 42,
+            name: "The Hitchhiker's Guide to the Galaxy",
+            URL: "http://www.example.com"
+        };
+
+        if(parseInt(mediaId, 10) !== mockMedia.id) {
+            return new Response("Media ID does not exist", 400);
+        }
+        // RUN DELETE HERE
+        return new Response(mockMedia, 200);
+    }
+
     // Defines the POST (creation) for a piece of media.
     public post(data: any): Response {
         if (!((data as Media).name)) {
