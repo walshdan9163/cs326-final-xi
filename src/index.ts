@@ -100,7 +100,7 @@ app.post("/api/:userId/hardware", (req, res) => {
 
 // TODO: User: Associate software to user account.
 
-// TODO: User: Delete (un-associate) hardware from user account.
+// TODO: User: Delete (un-associate) hardware from user account (Opposite of associate software to user account : recommend use .filter function).
 
 // TODO: User: Delete (un-associate) software from user account.
 
