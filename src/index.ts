@@ -56,7 +56,13 @@ app.get("/api/software/:softwareId", (req, res) => {
     res.send(response.toString());
 });
 
-// TODO: Software: Get many
+// Software: Get many
+app.get("/api/software", (req, res) => {
+    const controller = new SoftwareController();
+    const response: Response = controller.getMany();
+
+    res.send(response.toString());
+});
 
 // Media: Create
 app.post("/api/media", (req, res) => {
@@ -98,7 +104,13 @@ app.post("/api/:userId/hardware", (req, res) => {
    res.send(response.toString());
 });
 
-// TODO: User: Associate software to user account.
+// User: Associate software to user account.
+app.post("/api/:userId/software", (req, res) => {
+    const controller = new UserController();
+    const response: Response = controller.associateSoftware(req.body, req.params.userId);
+
+    res.send(response.toString());
+});
 
 // TODO: User: Delete (un-associate) hardware from user account (Opposite of associate software to user account : recommend use .filter function).
 

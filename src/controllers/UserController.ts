@@ -1,6 +1,7 @@
 import AbstractController from "./AbstractController";
 import User from "../entities/User";
 import Hardware from "../entities/Hardware";
+import Software from "../entities/Software";
 import Response from "../Response";
 
 export default class UserController extends AbstractController {
@@ -41,6 +42,31 @@ export default class UserController extends AbstractController {
 
         return new Response(exampleUser,
             201)
+    }
+
+    // Associates a piece of software with a user
+    public associateSoftware(data: any, userId: string): Response {
+        if(!data.id) {
+            return new Response({error: "Expected a valid hardware ID"}, 400);
+        }
+
+        // mock user for testing, replace with a user lookup once DB is hooked up
+        const mockUser: User = {
+            id: 2,
+            email: "user@guest.com",
+            password: "emery",
+            hardware: []
+        }
+
+        // mock software for testing, replace with a software lookup once DB is hooked up
+        const mockSoftware: Software = {
+            id: data.id,
+            name: "NetBeans",
+            description: "Web application IDE"
+        };
+
+        mockUser.hardware.push(mockSoftware);
+        return new Response(mockUser, 201);
     }
 
     // Defines the POST (creation) for a user.
