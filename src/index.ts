@@ -27,9 +27,6 @@ app
     })
     .get('/account', (req,res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/accountpage.html'));
-    })
-    .get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname + '/../src/public/views/404.html'));
     });
 
 // Hardware: Create
@@ -139,6 +136,10 @@ app.post("/api/:mediaId/delete", (req, res) => {
 
     res.send(response.toString());
 });
+
+app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/404.html'));
+    });
 
 // start the Express server
 app.listen(port, () => {
