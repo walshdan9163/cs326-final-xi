@@ -1,0 +1,193 @@
+/**
+ * Imports
+ */
+
+@import url('https://fonts.googleapis.com/css?family=VT323&display=swap');
+
+/**
+ * Globals
+ */
+
+.parent-container {
+    min-height: 100vh;
+    font-family: 'VT323', monospace, sans-serif;
+}
+
+main {
+    background-color: #008083;
+    color: #FAFAFA;
+    padding-bottom: 5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    color: #050505;
+}
+
+p {
+    padding: 12px 20px;
+}
+
+/**
+ * Forms
+ */
+
+.form-control {
+    border-radius: 0;
+    padding: 0.5rem;
+    line-height: 1.1;
+    height: 1.6rem;
+}
+
+/**
+ * Header (But really footer.)
+ */
+.header-global {
+    position: fixed;
+    border-top: 1px solid #C3C3C3;
+
+    bottom: 0;
+    width: 100vw;
+    z-index: 100;
+}
+
+.navbar {
+    justify-content: left;
+
+    background-color: #C3C3C3;
+    border-top: 1px solid white;
+    padding: 1px 2px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.navbar a {
+    color: #050505;
+
+    font-weight: bold;
+}
+
+.navbar-nav {
+    width: 100%
+}
+
+.navbar-brand {
+    padding: 0;
+    margin-right: 6px;
+}
+
+.navbar-brand > div {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.nav-item {
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 0 1rem;
+}
+
+.nav-link svg {
+    margin-right: 0.5rem;
+}
+
+.nav-item.active .nav-link {
+    background-color: #e8e8e8;
+}
+
+/**
+ * Border Styles
+ */
+.win-95-outer-border,
+.navbar-brand,
+.card,
+.nav-item {
+    border-top: 1px solid #C3C3C3;
+    border-left: 1px solid #C3C3C3;
+    border-right: 1px solid #050505;
+    border-bottom: 1px solid #050505;
+}
+
+.win-95-inner-border,
+.card-body,
+.nav-link {
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid #C3C3C3;
+    border-bottom: 1px solid #C3C3C3;
+}
+
+.win-95-outer-border--selected,
+.nav-item.active {
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.win-95-inner-border--selected,
+.form-control,
+.nav-item.active > .nav-link {
+    border-top: 1px solid #050505;
+    border-left: 1px solid #050505;
+    border-right: 1px solid #C3C3C3;
+    border-bottom: 1px solid #C3C3C3;
+}
+
+/**
+ * Card Styles
+ */
+.card {
+    border-radius: 0;
+    background-color: #C3C3C3;
+}
+
+.card-body {
+    padding: 0;
+    background-color: #C3C3C3;
+}
+
+.card-title {
+    background-color: #000082;
+    color: #FAFAFA;
+    margin: 1px;
+    padding: 0.1rem;
+}
+
+.card-title svg {
+    height: 1rem;
+    position: relative;
+    top: -0.15rem;
+    left: 0.1rem;
+}
+
+.list-group{
+    overflow:hidden; 
+    overflow-y:scroll;
+    max-height: 40vh;
+}
+
+.list-group-item {
+    background-color: #C3C3C3;
+}
+
+/**
+ * Icon Styles
+ */
+svg.feather {
+    position: relative;
+    top: -2px;
+}

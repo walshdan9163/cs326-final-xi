@@ -6,15 +6,28 @@ import TagController from "./controllers/TagController";
 import UserController from "./controllers/UserController";
 import Response from "./Response";
 
+import path = require('path');
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
+app.use('/public', express.static(path.resolve(__dirname + '/../src/public')));
+app.use('/static', express.static(path.resolve(__dirname + '/../src/public/static')));
 
 // Define a route handler for the default home page
-app.get("/", (req, res) => {
-    res.send( "Hello world!" );
-});
+app
+    .get("/", (req, res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
+    })
+    .get("/home", (req, res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
+    })
+    .get('/tech', (req,res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/tech.html'));
+    })
+    .get('/account', (req,res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/accountpage.html'));
+    });
 
 // Hardware: Create
 app.post("/api/hardware", (req, res) => {
@@ -135,6 +148,10 @@ app.post("/api/:mediaId/delete", (req, res) => {
 
     res.send(response.toString());
 });
+
+app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/404.html'));
+    });
 
 // start the Express server
 app.listen(port, () => {
