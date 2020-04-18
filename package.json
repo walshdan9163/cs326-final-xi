@@ -26,7 +26,8 @@
   "homepage": "https://github.com/walshdan9163/cs326-final-xi#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "tslint": "^6.1.1"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
