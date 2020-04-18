@@ -47,7 +47,7 @@ export default class UserController extends AbstractController {
     // Associates a piece of software with a user
     public associateSoftware(data: any, userId: string): Response {
         if(!data.id) {
-            return new Response({error: "Expected a valid hardware ID"}, 400);
+            return new Response({error: "Expected a valid software ID"}, 400);
         }
 
         // mock user for testing, replace with a user lookup once DB is hooked up
@@ -67,6 +67,75 @@ export default class UserController extends AbstractController {
 
         mockUser.hardware.push(mockSoftware);
         return new Response(mockUser, 201);
+    }
+
+    // Delete hardware from user
+    public deleteHardware(data: any, userId: string): Response {
+        if(!data.id) {
+            return new Response({error: "Expected a valid hardware ID"}, 400);
+        }
+
+        // mock hardware for testing
+        const mockHardware: Hardware = {
+            id: 93,
+            name: "Apple Newton",
+            description: "Apple PDA"
+        };
+
+        // mock user for testing
+        const mockUser: User = {
+            id: 3,
+            email: "user@user.com",
+            password: "react",
+            hardware: [mockHardware],
+            software: []
+        };
+
+        // check for correct user, replace when DB added
+        if(parseInt(userId, 10) !== mockUser.id) {
+            return new Response("Expected valid user ID", 400);
+        }
+
+        const index = mockUser.hardware.indexOf(mockHardware);
+        if(index > -1) {
+            mockUser.hardware.splice(index, 1);
+            return new Response(mockUser, 200);
+        }
+        return new Response("User does not have this hardware", 400);
+    }
+
+    public deleteSoftware(data: any, userId: string): Response {
+        if(!data.id) {
+            return new Response({error: "Expected a valid software ID"}, 400);
+        }
+
+        // mock software for testing
+        const mockSoftware: Software = {
+            id: 98,
+            name: "Half-Life",
+            description: "Half-Life by Valve Software, on Windows, Mac, Linux, PS2"
+        };
+
+        // mock user for testing
+        const mockUser: User = {
+            id: 6,
+            email: "user@user.com",
+            password: "drupal",
+            hardware: [],
+            software: [mockSoftware]
+        };
+
+        // check for correct user, replace when DB added
+        if(parseInt(userId, 10) !== mockUser.id) {
+            return new Response("Expected valid user ID", 400);
+        }
+
+        const index = mockUser.software.indexOf(mockSoftware);
+        if(index > -1) {
+            mockUser.software.splice(index, 1);
+            return new Response(mockUser, 200);
+        }
+        return new Response("User does not have this software", 400);
     }
 
     // Defines the POST (creation) for a user.

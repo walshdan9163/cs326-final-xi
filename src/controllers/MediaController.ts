@@ -21,7 +21,7 @@ export default class MediaController extends AbstractController {
         const mockMedia: Media = {
             id: 42,
             name: "The Hitchhiker's Guide to the Galaxy",
-            URL: "http://www.example.com"
+            URL: "http://http://www.pethealthnetwork.com/sites/default/files/content/images/my-cat-aggressive-fb-501276867.jpg"
         };
 
         if(parseInt(mediaId, 10) !== mockMedia.id) {
