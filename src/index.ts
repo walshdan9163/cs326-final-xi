@@ -6,15 +6,28 @@ import TagController from "./controllers/TagController";
 import UserController from "./controllers/UserController";
 import Response from "./Response";
 
+import path = require('path');
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
+app.use('/public', express.static(path.resolve(__dirname + '/../src/public')));
+app.use('/static', express.static(path.resolve(__dirname + '/../src/public/static')));
 
 // Define a route handler for the default home page
-app.get("/", (req, res) => {
-    res.send( "Hello world!" );
-});
+app
+    .get("/", (req, res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
+    })
+    .get("/home", (req, res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
+    })
+    .get('/tech', (req,res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/tech.html'));
+    })
+    .get('/account', (req,res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/accountpage.html'));
+    });
 
 // Hardware: Create
 app.post("/api/hardware", (req, res) => {
@@ -114,9 +127,33 @@ app.post("/api/:userId/software", (req, res) => {
 
 // TODO: User: Delete (un-associate) hardware from user account (Opposite of associate software to user account : recommend use .filter function).
 
-// TODO: User: Delete (un-associate) software from user account.
+// User: Delete (un-associate) hardware from user account.
+app.post("/api/:userId/hardware/delete", (req, res) => {
+    const controller = new UserController();
+    const response: Response = controller.deleteHardware(req.body, req.params.userId);
 
-// TODO: Media: Delete by ID.
+    res.send(response.toString());
+});
+
+// User: Delete (un-associate) software from user account.
+app.post("/api/:userId/software/delete", (req, res) => {
+    const controller = new UserController();
+    const response: Response = controller.deleteSoftware(req.body, req.params.userId);
+
+    res.send(response.toString());
+});
+
+// Media: Delete by ID.
+app.post("/api/:mediaId/delete", (req, res) => {
+    const controller = new MediaController();
+    const response: Response = controller.delete(req.params.mediaId);
+
+    res.send(response.toString());
+});
+
+app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/404.html'));
+    });
 
 // start the Express server
 app.listen(port, () => {

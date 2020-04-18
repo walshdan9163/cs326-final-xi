@@ -1,5 +1,5 @@
-import Hardware from "./hardware";
-import Software from "./software";
+import Hardware from "./Hardware";
+import Software from "./Software";
 
 export default interface User {
     id: number;
