@@ -112,9 +112,21 @@ app.post("/api/:userId/software", (req, res) => {
     res.send(response.toString());
 });
 
-// TODO: User: Delete (un-associate) hardware from user account.
+// User: Delete (un-associate) hardware from user account.
+app.post("/api/:userId/hardware/delete", (req, res) => {
+    const controller = new UserController();
+    const response: Response = controller.deleteHardware(req.body, req.params.userId);
 
-// TODO: User: Delete (un-associate) software from user account.
+    res.send(response.toString());
+});
+
+// User: Delete (un-associate) software from user account.
+app.post("/api/:userId/software/delete", (req, res) => {
+    const controller = new UserController();
+    const response: Response = controller.deleteSoftware(req.body, req.params.userId);
+
+    res.send(response.toString());
+});
 
 // Media: Delete by ID.
 app.post("/api/:mediaId/delete", (req, res) => {
