@@ -47,7 +47,7 @@ export default class UserController extends AbstractController {
     // Associates a piece of software with a user
     public associateSoftware(data: any, userId: string): Response {
         if(!data.id) {
-            return new Response({error: "Expected a valid hardware ID"}, 400);
+            return new Response({error: "Expected a valid software ID"}, 400);
         }
 
         // mock user for testing, replace with a user lookup once DB is hooked up
