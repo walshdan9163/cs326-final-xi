@@ -11,7 +11,8 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,11 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "tslint": "^6.1.1"
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.6",
+    "@types/node": "^13.11.1",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
