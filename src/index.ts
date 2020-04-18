@@ -12,9 +12,22 @@ const port = 8080;
 app.use(express.json());
 
 // Define a route handler for the default home page
-app.get("/", (req, res) => {
-    res.send( "Hello world!" );
-});
+app
+    .get("/", (req, res) => {
+        res.sendFile(__dirname + '/views/homepage.html');
+    })
+    .get("/home", (req, res) => {
+        res.sendFile(__dirname + '/views/homepage.html');
+    })
+    .get('/tech', (req,res) => {
+        res.sendFile(__dirname + '/views/tech.html');
+    })
+    .get('/account', (req,res) => {
+        res.sendFile(__dirname + '/views/accountpage.html');
+    })
+    .get("*", (req, res) => {
+        res.sendFile(__dirname + '/views/404.html');
+    });
 
 // Hardware: Create
 app.post("/api/hardware", (req, res) => {
