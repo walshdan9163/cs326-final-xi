@@ -8,7 +8,7 @@ import Response from "./Response";
 
 import path = require('path');
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use('/public', express.static(path.resolve(__dirname + '/../src/public')));
