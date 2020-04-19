@@ -13,6 +13,8 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use('/public', express.static(path.resolve(__dirname + '/../src/public')));
 app.use('/static', express.static(path.resolve(__dirname + '/../src/public/static')));
+app.use('/js', express.static(path.resolve(__dirname + '/../dist-frontend')));
+
 
 // Define a route handler for the default home page
 app
@@ -22,7 +24,7 @@ app
     .get("/home", (req, res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
     })
-    .get('/tech', (req,res) => {
+    .get('/hardware/:hardwareId', (req,res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/tech.html'));
     })
     .get('/account', (req,res) => {
@@ -124,8 +126,6 @@ app.post("/api/:userId/software", (req, res) => {
 
     res.send(response.toString());
 });
-
-// TODO: User: Delete (un-associate) hardware from user account (Opposite of associate software to user account : recommend use .filter function).
 
 // User: Delete (un-associate) hardware from user account.
 app.post("/api/:userId/hardware/delete", (req, res) => {
