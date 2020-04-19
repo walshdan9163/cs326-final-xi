@@ -36,14 +36,20 @@ const buildFrontend = () => {
         .pipe(gulp.dest("dist-frontend"));
 };
 
-const restartServer = (cb) => {
+const startServer = (cb) => {
     server.start();
+    cb();
 };
+
+const stopServer = (cb) => {
+    return server.stop();
+}
 
 const watchDir = () => {
     watch(['./src/**/*.ts'], series(
+        stopServer,
         build,
-        restartServer
+        startServer
     ));
 };
 
@@ -53,6 +59,6 @@ const clean = () => {
 
 const build = parallel(buildBackend, buildFrontend);
 
-exports.default = series(build, parallel(watchDir, restartServer));
+exports.default = series(build, parallel(watchDir, startServer));
 exports.build = build;
 exports.clean = clean;
