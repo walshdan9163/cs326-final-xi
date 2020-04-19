@@ -1,5 +1,6 @@
 # Not commiting .map files to the repo or .idea files.
 dist/*
+dist-frontend/*
 .idea/*
 
 ### Node template
