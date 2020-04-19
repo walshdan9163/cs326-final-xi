@@ -1,4 +1,5 @@
 import {HomepageHardwareListView} from './HomepageHardwareListView';
+import {HomepageSoftwareListView} from './HomepageSoftwareListView';
 
 window.addEventListener('load', () => {
     const homepageHardwareListView = new HomepageHardwareListView(document.getElementById('hardware-list'));
@@ -9,5 +10,13 @@ window.addEventListener('load', () => {
         .then((response) => response.json())
         .then((data) => {
             homepageHardwareListView.setState(data);
+        });
+
+    const homepageSoftwareListView = new HomepageSoftwareListView(document.getElementById('software-list'));
+
+    fetch('/api/software')
+        .then((response) => response.json())
+        .then((data) => {
+            homepageSoftwareListView.setState(data);
         });
 });

@@ -27,6 +27,9 @@ app
     .get('/hardware/:hardwareId', (req,res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/tech.html'));
     })
+    .get('/software/:softwareId', (req,res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/tech.html'));
+    })
     .get('/account', (req,res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/accountpage.html'));
     });
