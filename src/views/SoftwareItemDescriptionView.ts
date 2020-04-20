@@ -1,5 +1,4 @@
 import { AbstractView } from "./AbstractView";
-import Software from "../entities/Software";
 
 export class SoftwareItemDescriptionView extends AbstractView {
     async onStateChange(): Promise<boolean> {
@@ -39,17 +38,6 @@ export class SoftwareItemDescriptionView extends AbstractView {
 
         const listGroup = document.createElement('div');
         listGroup.classList.add('list-group');
-
-        // // Make and append the item list.
-        const relatedList = this.state["related"];
-        relatedList.forEach((related: Software) => {
-            const listElement = document.createElement('a');
-            listElement.classList.add('list-group-item');
-            listElement.classList.add('list-group-item-action');
-            listElement.innerText = related.name;
-            listElement.href = '/software/' + related.id;
-            listGroup.appendChild(listElement);
-        });
 
         returnElement.appendChild(listGroup);
         
