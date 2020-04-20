@@ -6,13 +6,21 @@ export default class HardwareController extends AbstractController {
 
     // Defines the GET by ID method for a piece of hardware.
     public get(id: number): Response {
-        const hardware: Hardware = {
+
+        // Will need to update this once we have a real database to get the hardware with correct ID from the DB.
+        const hardwareList: Hardware[] = [
+            {
             id: 1,
             name: "Apple II",
-            description: "The Apple II",
-        };
+            description: "The Apple II"
+            },
+            {
+            id: 2,
+            name: "IBM PC",
+            description: "The IBM PC"
+            }];
 
-        return new Response(hardware, 200)
+        return new Response(hardwareList.find(hardware => hardware.id === id), 200)
     }
 
     public getMany(): Response {
