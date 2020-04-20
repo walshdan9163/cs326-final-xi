@@ -61,10 +61,10 @@ window.addEventListener('load', () => {
     if(softwareItemDescription){
         const softwareItemDescriptionView = new SoftwareItemDescriptionView(softwareItemDescription);
 
-        var url = window.location.href;
-        var params = url.split('/');
+        const currentUrl = window.location.pathname;
+        const params = currentUrl.split('/');
 
-        fetch('/api/software/' + params.slice(-1)[0])
+        fetch('/api/software/' + params[2])
             .then((response) => response.json())
             .then((data) => {
                 softwareItemDescriptionView.setState(data);
@@ -76,10 +76,10 @@ window.addEventListener('load', () => {
     if(softwareItemImage){
         const softwareItemImageView = new SoftwareItemImageView(softwareItemImage);
 
-        var url = window.location.href;
-        var params = url.split('/');
+        const currentUrl: string = window.location.pathname;
+        const params: string[] = currentUrl.split('/');
 
-        fetch('/api/media/' + params.slice(-1)[0])
+        fetch('/api/media/' + params[2])
             .then((response) => response.json())
             .then((data) => {
                 softwareItemImageView.setState(data);
@@ -92,10 +92,10 @@ window.addEventListener('load', () => {
     if(hardwareItemDescription){
         const hardwareItemDescriptionView = new HardwareItemDescriptionView(hardwareItemDescription);
 
-        var url = window.location.href;
-        var params = url.split('/');
+        const currentUrl: string = window.location.pathname;
+        const params: string[] = currentUrl.split('/');
 
-        fetch('/api/hardware/' + params.slice(-1)[0])
+        fetch('/api/hardware/' + params[2])
             .then((response) => response.json())
             .then((data) => {
                 hardwareItemDescriptionView.setState(data);
@@ -107,10 +107,10 @@ window.addEventListener('load', () => {
     if(hardwareItemImage){
         const hardwareItemImageView = new HardwareItemImageView(hardwareItemImage);
 
-        var url = window.location.href;
-        var params = url.split('/');
+        const currentUrl: string = window.location.pathname;
+        const params: string[] = currentUrl.split('/');
 
-        fetch('/api/media/' + params.slice(-1)[0])
+        fetch('/api/media/' + params[2])
             .then((response) => response.json())
             .then((data) => {
                 hardwareItemImageView.setState(data);
