@@ -122,6 +122,22 @@ app.get("/api/user/:userId", (req, res) => {
     res.send(response.toString());
 });
 
+// User: Get software
+app.get("/api/user/:userId/software", (req, res) => {
+    const controller = new UserController();
+    const response: Response = controller.userSoftware(parseInt(req.params.userId, 10));
+
+    res.send(response.toString());
+});
+
+// User: Get hardware
+app.get("/api/user/:userId/hardware", (req, res) => {
+    const controller = new UserController();
+    const response: Response = controller.userHardware(parseInt(req.params.userId, 10));
+
+    res.send(response.toString());
+});
+
 // User: Associate hardware to user account.
 app.post("/api/:userId/hardware", (req, res) => {
    const controller = new UserController();

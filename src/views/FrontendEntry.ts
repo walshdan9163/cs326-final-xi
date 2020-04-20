@@ -1,5 +1,5 @@
-import {HomepageHardwareListView} from './HomepageHardwareListView';
-import {HomepageSoftwareListView} from './HomepageSoftwareListView';
+import {HardwareListView} from './HardwareListView';
+import {SoftwareListView} from './SoftwareListView';
 import {SoftwareItemImageView} from './SoftwareItemImageView';
 import {SoftwareItemDescriptionView} from './SoftwareItemDescriptionView';
 import {HardwareItemImageView} from './HardwareItemImageView';
@@ -9,9 +9,9 @@ window.addEventListener('load', () => {
 
     // Makes an API call and calls setState on the homepage's HardwareList.
     // The HardwareList is passed an array of hardware that it uses to render the updated HardwareList.
-    const hardwareList = document.getElementById('homepage-hardware-list');
-    if(hardwareList){
-        const homepageHardwareListView = new HomepageHardwareListView(hardwareList);
+    const homepageHardwareList = document.getElementById('homepage-hardware-list');
+    if(homepageHardwareList){
+        const homepageHardwareListView = new HardwareListView(homepageHardwareList);
 
         fetch('/api/hardware')
             .then((response) => response.json())
@@ -19,12 +19,23 @@ window.addEventListener('load', () => {
                 homepageHardwareListView.setState(data);
             });
     }
+
+    const accountHardwareList = document.getElementById('account-hardware-list');
+    if(accountHardwareList){
+        const accountHardwareListView = new HardwareListView(accountHardwareList);
+
+        fetch("/api/user/1/hardware")
+            .then((response) => response.json())
+            .then((data) => {
+                accountHardwareListView.setState(data);
+            });
+    }
     
     // Makes an API call and calls setState on the homepage's SoftwareList.
     // The SoftwareList is passed an array of software that it uses to render the updated SoftwareList.
-    const softwareList = document.getElementById('homepage-software-list');
-    if(softwareList){
-        const homepageSoftwareListView = new HomepageSoftwareListView(softwareList);
+    const homepageSoftwareList = document.getElementById('homepage-software-list');
+    if(homepageSoftwareList){
+        const homepageSoftwareListView = new SoftwareListView(homepageSoftwareList);
 
         fetch('/api/software')
             .then((response) => response.json())
@@ -33,6 +44,17 @@ window.addEventListener('load', () => {
             });
     }
     
+    const accountSoftwareList = document.getElementById('account-software-list');
+    if(accountSoftwareList){
+        const accountSoftwareListView = new SoftwareListView(accountSoftwareList);
+
+        fetch("/api/user/1/software")
+            .then((response) => response.json())
+            .then((data) => {
+                accountSoftwareListView.setState(data);
+            });
+    }
+
     // Makes an API call and calls setState on the software detail SoftwareDetail box.
     // The softwareItemDescriptionView is passed the name and description of the software item.
     const softwareItemDescription = document.getElementById('software-detail');

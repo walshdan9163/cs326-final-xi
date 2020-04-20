@@ -1,7 +1,7 @@
 import { AbstractView } from "./AbstractView";
-import Software from "../entities/Software";
+import Hardware from "../entities/Hardware";
 
-export class HomepageSoftwareListView extends AbstractView {
+export class HardwareListView extends AbstractView {
     async onStateChange(): Promise<boolean> {
         // Validate state change.
         if(this.state.length > 0 &&
@@ -18,12 +18,12 @@ export class HomepageSoftwareListView extends AbstractView {
     render(): Element {
         const returnElement = document.createElement('div');
 
-        this.state.forEach((software: Software) => {
+        this.state.forEach((hardware: Hardware) => {
             const listElement = document.createElement('a');
             listElement.classList.add('list-group-item');
             listElement.classList.add('list-group-item-action');
-            listElement.innerText = software.name;
-            listElement.href = '/software/' + software.id;
+            listElement.innerText = hardware.name;
+            listElement.href = '/hardware/' + hardware.id;
 
             returnElement.appendChild(listElement);
         });
