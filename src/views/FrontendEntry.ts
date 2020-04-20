@@ -136,7 +136,7 @@ window.addEventListener('load', () => {
                 body: JSON.stringify(data),
             })
                 .then((response: Response) => response.json())
-                .then((data) => console.log('Successfully added hardware:', data));
+                .then((data) => console.log('Successfully added hardware to:', data));
         });
     }
 
@@ -159,8 +159,53 @@ window.addEventListener('load', () => {
                 body: JSON.stringify(data),
             })
                 .then((response: Response) => response.json())
-                .then((data) => console.log('Successfully deleted hardware:', data));
+                .then((data) => console.log('Successfully deleted hardware from:', data));
         })
     }
-    
+
+    // Associates a piece of software to a user account.
+    const addSoftwareButton = document.getElementById('software-add-button');
+    if(addSoftwareButton) {
+        addSoftwareButton.addEventListener('click', () => {
+            // Will need to get userId properly later.
+            const userId: string = "1";
+            const currentUrl: string = window.location.pathname;
+
+            const softwareToAdd = currentUrl.split('/')[2];
+            const data = { id: softwareToAdd };
+
+            fetch(`/api/${userId}/software`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response: Response) => response.json())
+                .then((data) => console.log('Successfully added software to:', data));
+        });
+    }
+
+    // Un-associates a piece of software from a user account.
+    const deleteSoftwareButton = document.getElementById('software-delete-button');
+    if(deleteSoftwareButton) {
+        deleteSoftwareButton.addEventListener('click', () => {
+            // Will need to get userId properly later.
+            const userId: string = "1";
+            const currentUrl: string = window.location.pathname;
+
+            const softwareToDelete = currentUrl.split('/')[2];
+            const data = { id: softwareToDelete };
+
+            fetch(`/api/${userId}/software/delete`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response: Response) => response.json())
+                .then((data) => console.log('Successfully deleted software from:', data));
+        })
+    }
 });
