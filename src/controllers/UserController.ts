@@ -101,30 +101,37 @@ export default class UserController extends AbstractController {
 
         // mock hardware for testing
         const mockHardware: Hardware = {
-            id: 93,
+            id: 1,
             name: "Apple Newton",
             description: "Apple PDA"
         };
 
         // mock user for testing
         const mockUser: User = {
-            id: 3,
+            id: 1,
             email: "user@user.com",
             password: "react",
             hardware: [mockHardware],
             software: []
         };
 
-        // check for correct user, replace when DB added
+        // Check for correct user, replace when DB added.
         if(parseInt(userId, 10) !== mockUser.id) {
             return new Response("Expected valid user ID", 400);
         }
 
-        const index = mockUser.hardware.indexOf(mockHardware);
+        // Check for a valid hardware id, replace when DB added.
+        if(parseInt(data.id, 10) !== mockHardware.id) {
+            return new Response("Expected valid hardware ID", 400);
+        }
+
+        // Finds the index of the hardware to delete from the user and removes it.
+        const index: number = mockUser.hardware.findIndex(hardwareToDelete => hardwareToDelete.id.toString() === data.id);
         if(index > -1) {
             mockUser.hardware.splice(index, 1);
             return new Response(mockUser, 200);
         }
+
         return new Response("User does not have this hardware", 400);
     }
 
