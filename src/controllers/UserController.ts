@@ -61,6 +61,11 @@ export default class UserController extends AbstractController {
             description: "An example"
         };
 
+        // Return an error if the user tries to add duplicate hardware to account.
+        if(exampleUser.hardware.find(hardware => hardware.id === data.id)) {
+            return new Response("Cannot add duplicate Hardware to User.", 400);
+        }
+
         // Push the hardware object ot the User's hardware.
         exampleUser.hardware.push(exampleHardware);
 
