@@ -111,3 +111,10 @@ Delete a piece of software from a user account.<br/>
 ```DELETE /api/media/[id]```
 
 Delete media (should look for references and delete from that content).
+
+HEROKU URL
+-----------
+https://retrotechconnection.herokuapp.com/#
+
+DIVISION OF LABOR
+-----------------
