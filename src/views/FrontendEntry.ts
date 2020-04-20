@@ -117,14 +117,13 @@ window.addEventListener('load', () => {
             });
     }
 
-    // Checks if the user has a piece of hardware currently -- if not, associate to their account.
+    // Associates a piece of hardware to a user account.
     const addHardwareButton = document.getElementById('hardware-add-button');
-
-    if (addHardwareButton) {
+    if(addHardwareButton) {
         addHardwareButton.addEventListener('click', () => {
             // Will need to get userId properly later.
             const userId: string = "1";
-            const currentUrl = window.location.pathname;
+            const currentUrl: string = window.location.pathname;
 
             const hardwareToAdd = currentUrl.split('/')[2];
             const data = { id: hardwareToAdd };
@@ -137,10 +136,31 @@ window.addEventListener('load', () => {
                 body: JSON.stringify(data),
             })
                 .then((response: Response) => response.json())
-                .then((data) => console.log('Success:', data));
+                .then((data) => console.log('Successfully added hardware:', data));
         });
     }
 
+    // Un-associates a piece of hardware from a user account.
+    const deleteHardwareButton = document.getElementById('hardware-delete-button');
+    if(deleteHardwareButton) {
+        deleteHardwareButton.addEventListener('click', () => {
+            // Will need to get userId properly later.
+            const userId: string = "1";
+            const currentUrl: string = window.location.pathname;
 
+            const hardwareToDelete = currentUrl.split('/')[2];
+            const data = { id: hardwareToDelete };
+
+            fetch(`/api/${userId}/hardware/delete`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response: Response) => response.json())
+                .then((data) => console.log('Successfully deleted hardware:', data));
+        })
+    }
     
 });
