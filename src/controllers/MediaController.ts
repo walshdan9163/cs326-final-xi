@@ -19,7 +19,7 @@ export default class MediaController extends AbstractController {
     public delete(mediaId: string): Response {
         // check if media exists, mocked up because no DB
         const mockMedia: Media = {
-            id: 42,
+            id: 1,
             name: "The Hitchhiker's Guide to the Galaxy",
             URL: "http://http://www.pethealthnetwork.com/sites/default/files/content/images/my-cat-aggressive-fb-501276867.jpg"
         };
@@ -27,7 +27,8 @@ export default class MediaController extends AbstractController {
         if(parseInt(mediaId, 10) !== mockMedia.id) {
             return new Response("Media ID does not exist", 400);
         }
-        // RUN DELETE HERE
+
+        // Returns deleted media and confirmation.
         return new Response(mockMedia, 200);
     }
 

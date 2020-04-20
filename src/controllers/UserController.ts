@@ -80,7 +80,7 @@ export default class UserController extends AbstractController {
             email: "user@guest.com",
             password: "emery",
             hardware: []
-        }
+        };
 
         // mock software for testing, replace with a software lookup once DB is hooked up
         const mockSoftware: Software = {
@@ -142,30 +142,37 @@ export default class UserController extends AbstractController {
 
         // mock software for testing
         const mockSoftware: Software = {
-            id: 98,
+            id: 1,
             name: "Half-Life",
             description: "Half-Life by Valve Software, on Windows, Mac, Linux, PS2"
         };
 
         // mock user for testing
         const mockUser: User = {
-            id: 6,
+            id: 1,
             email: "user@user.com",
             password: "drupal",
             hardware: [],
             software: [mockSoftware]
         };
 
-        // check for correct user, replace when DB added
+        // Check for correct user, replace when DB added.
         if(parseInt(userId, 10) !== mockUser.id) {
             return new Response("Expected valid user ID", 400);
         }
 
-        const index = mockUser.software.indexOf(mockSoftware);
+        // Check for a valid hardware id, replace when DB added.
+        if(parseInt(data.id, 10) !== mockSoftware.id) {
+            return new Response("Expected valid software ID", 400);
+        }
+
+        // Finds the index of the hardware to delete from the user and removes it.
+        const index: number = mockUser.software.findIndex(softwareToDelete => softwareToDelete.id.toString() === data.id);
         if(index > -1) {
             mockUser.software.splice(index, 1);
             return new Response(mockUser, 200);
         }
+
         return new Response("User does not have this software", 400);
     }
 

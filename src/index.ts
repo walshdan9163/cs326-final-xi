@@ -171,7 +171,7 @@ app.post("/api/:userId/software/delete", (req, res) => {
 });
 
 // Media: Delete by ID.
-app.post("/api/:mediaId/delete", (req, res) => {
+app.delete("/api/:mediaId", (req, res) => {
     const controller = new MediaController();
     const response: Response = controller.delete(req.params.mediaId);
 
