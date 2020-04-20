@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
 
     // Makes an API call and calls setState on the homepage's HardwareList.
     // The HardwareList is passed an array of hardware that it uses to render the updated HardwareList.
-    const hardwareList = document.getElementById('hardware-list');
+    const hardwareList = document.getElementById('homepage-hardware-list');
     if(hardwareList){
         const homepageHardwareListView = new HomepageHardwareListView(hardwareList);
 
@@ -20,7 +20,7 @@ window.addEventListener('load', () => {
     
     // Makes an API call and calls setState on the homepage's SoftwareList.
     // The SoftwareList is passed an array of software that it uses to render the updated SoftwareList.
-    const softwareList = document.getElementById('software-list');
+    const softwareList = document.getElementById('homepage-software-list');
     if(softwareList){
         const homepageSoftwareListView = new HomepageSoftwareListView(softwareList);
 
@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
             });
     }
     
-    const softwareItemDescription = document.getElementById('software');
+    const softwareItemDescription = document.getElementById('software-detail');
     if(softwareItemDescription){
         const softwareItemDescriptionView = new SoftwareItemDescriptionView(softwareItemDescription);
 
@@ -45,7 +45,7 @@ window.addEventListener('load', () => {
             });
     }
 
-    const softwareItemImage = document.getElementById('software-image');
+    const softwareItemImage = document.getElementById('software-detail--image');
     if(softwareItemImage){
         const softwareItemImageView = new SoftwareItemImageView(softwareItemImage);
 
