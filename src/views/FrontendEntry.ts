@@ -2,6 +2,8 @@ import {HomepageHardwareListView} from './HomepageHardwareListView';
 import {HomepageSoftwareListView} from './HomepageSoftwareListView';
 import {SoftwareItemImageView} from './SoftwareItemImageView';
 import {SoftwareItemDescriptionView} from './SoftwareItemDescriptionView';
+import {HardwareItemImageView} from './HardwareItemImageView';
+import {HardwareItemDescriptionView} from './HardwareItemDescriptionView';
 
 window.addEventListener('load', () => {
 
@@ -31,6 +33,8 @@ window.addEventListener('load', () => {
             });
     }
     
+    // Makes an API call and calls setState on the software detail SoftwareDetail box.
+    // The softwareItemDescriptionView is passed the name and description of the software item.
     const softwareItemDescription = document.getElementById('software-detail');
     if(softwareItemDescription){
         const softwareItemDescriptionView = new SoftwareItemDescriptionView(softwareItemDescription);
@@ -45,6 +49,7 @@ window.addEventListener('load', () => {
             });
     }
 
+    
     const softwareItemImage = document.getElementById('software-detail--image');
     if(softwareItemImage){
         const softwareItemImageView = new SoftwareItemImageView(softwareItemImage);
@@ -56,6 +61,37 @@ window.addEventListener('load', () => {
             .then((response) => response.json())
             .then((data) => {
                 softwareItemImageView.setState(data);
+            });
+    }
+
+    // Makes an API call and calls setState on the hardware detail hardwareDetail box.
+    // The hardwareItemDescriptionView is passed the name and description of the hardware item.
+    const hardwareItemDescription = document.getElementById('hardware-detail');
+    if(hardwareItemDescription){
+        const hardwareItemDescriptionView = new HardwareItemDescriptionView(hardwareItemDescription);
+
+        var url = window.location.href;
+        var params = url.split('/');
+
+        fetch('/api/hardware/' + params.slice(-1)[0])
+            .then((response) => response.json())
+            .then((data) => {
+                hardwareItemDescriptionView.setState(data);
+            });
+    }
+
+    
+    const hardwareItemImage = document.getElementById('hardware-detail--image');
+    if(hardwareItemImage){
+        const hardwareItemImageView = new HardwareItemImageView(hardwareItemImage);
+
+        var url = window.location.href;
+        var params = url.split('/');
+
+        fetch('/api/media/' + params.slice(-1)[0])
+            .then((response) => response.json())
+            .then((data) => {
+                hardwareItemImageView.setState(data);
             });
     }
 
