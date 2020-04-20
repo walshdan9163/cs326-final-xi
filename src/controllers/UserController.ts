@@ -19,26 +19,36 @@ export default class UserController extends AbstractController {
 
     // Returns a list of software associated with account.
     public userSoftware(userId: number): Response{
-        const mockSoftware: Software = {
-            id: 1,
-            name: "NetBeans",
-            description: "Web application IDE"
-        };
+        const softwareList: Software[] = [
+            {
+                id: 1,
+                name: "Mac OS",
+                description: "The latest Mac OS"
+            },
+            {
+                id: 2,
+                name: "Photoshop",
+                description: "Probably should just pirate this"
+            }];
 
-        const software = [mockSoftware];
-        return new Response(software, 200)
+        return new Response(softwareList, 200)
     }
 
     // Returns a list of hardware associated with account.
     public userHardware(userId: number): Response{
-        const mockHardware: Hardware = {
-            id: 1,
-            name: "PlayStation 1",
-            description: "Somewhat old gaming system?"
-        };
+        const hardwareList: Hardware[] = [
+            {
+                id: 1,
+                name: "Apple II",
+                description: "The Apple II"
+            },
+            {
+                id: 2,
+                name: "IBM PC",
+                description: "The IBM PC"
+            }];
 
-        const hardware = [mockHardware];
-        return new Response(hardware, 200)
+        return new Response(hardwareList, 200)
     }
 
     public associateHardware(data: any, userId: string): Response {
