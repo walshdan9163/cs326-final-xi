@@ -9,9 +9,7 @@ export default class SoftwareController extends AbstractController {
         const software: Software = {
             id: 1,
             name: "Doom",
-            description: "The game Doom", 
-            related : [ {id: 1, name: "Mac OS", description: "The latest Mac OS"},
-                        {id: 2, name: "Photoshop", description: "Probably should just pirate this"}]
+            description: "The game Doom",
         };
 
         return new Response(software, 200)

@@ -1,5 +1,4 @@
 import { AbstractView } from "./AbstractView";
-import Hardware from "../entities/Hardware";
 
 export class HardwareItemDescriptionView extends AbstractView {
     async onStateChange(): Promise<boolean> {
@@ -40,17 +39,6 @@ export class HardwareItemDescriptionView extends AbstractView {
 
         const listGroup = document.createElement('div');
         listGroup.classList.add('list-group');
-
-        // // Make and append the item list.
-        const relatedList = this.state["related"];
-        relatedList.forEach((related: Hardware) => {
-            const listElement = document.createElement('a');
-            listElement.classList.add('list-group-item');
-            listElement.classList.add('list-group-item-action');
-            listElement.innerText = related.name;
-            listElement.href = '/hardware/' + related.id;
-            listGroup.appendChild(listElement);
-        });
 
         returnElement.appendChild(listGroup);
         

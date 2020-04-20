@@ -10,8 +10,6 @@ export default class HardwareController extends AbstractController {
             id: 1,
             name: "Apple II",
             description: "The Apple II",
-            related: [ {id: 1, name: "Apple II", description: "The Apple II"},
-                        {id: 2, name: "IBM PC", description: "The IBM PC"}]
         };
 
         return new Response(hardware, 200)

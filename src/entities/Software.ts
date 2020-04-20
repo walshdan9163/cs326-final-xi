@@ -6,7 +6,6 @@ export default interface Software {
     id: number;
     name: string;
     description: string;
-    related?: Software[];
     hardware?: Hardware[];
     tag?: Tag[];
     media?: Media[];
