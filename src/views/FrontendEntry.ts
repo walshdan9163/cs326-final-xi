@@ -117,5 +117,30 @@ window.addEventListener('load', () => {
             });
     }
 
+    // Checks if the user has a piece of hardware currently -- if not, associate to their account.
+    const addHardwareButton = document.getElementById('hardware-add-button');
+
+    if (addHardwareButton) {
+        addHardwareButton.addEventListener('click', () => {
+            // Will need to get userId properly later.
+            const userId: string = "1";
+            const currentUrl = window.location.pathname;
+
+            const hardwareToAdd = currentUrl.split('/')[2];
+            const data = { id: hardwareToAdd };
+
+            fetch(`/api/${userId}/hardware`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response: Response) => response.json())
+                .then((data) => console.log('Success:', data));
+        });
+    }
+
+
     
 });
