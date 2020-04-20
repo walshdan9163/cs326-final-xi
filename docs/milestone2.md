@@ -118,3 +118,15 @@ https://retrotechconnection.herokuapp.com/#
 
 DIVISION OF LABOR
 -----------------
+### Will Hammond ###
+
+
+### Dan Walsh ###
+Setup Heroku deployment
+
+### Jackson Weber ###
+Drew out API Planning/drafted original API</br>
+Created Controller setup</br>
+Created Original entities</br>
+Setup Gulp to compile both frontend and backend with single command (for Heroku/ease)</br>
+Created AbstractView system to manage frontend state change
