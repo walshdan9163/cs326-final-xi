@@ -7,9 +7,11 @@ export default class SoftwareController extends AbstractController {
     // Defines the GET by ID method for a piece of software.
     public get(id: number): Response {
         const software: Software = {
-            id,
+            id: 1,
             name: "Doom",
-            description: "The game Doom"
+            description: "The game Doom", 
+            related : [ {id: 1, name: "Mac OS", description: "The latest Mac OS"},
+                        {id: 2, name: "Photoshop", description: "Probably should just pirate this"}]
         };
 
         return new Response(software, 200)

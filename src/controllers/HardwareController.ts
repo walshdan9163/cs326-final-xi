@@ -7,9 +7,11 @@ export default class HardwareController extends AbstractController {
     // Defines the GET by ID method for a piece of hardware.
     public get(id: number): Response {
         const hardware: Hardware = {
-            id,
+            id: 1,
             name: "Apple II",
-            description: "The Apple II"
+            description: "The Apple II",
+            related: [ {id: 1, name: "Apple II", description: "The Apple II"},
+                        {id: 2, name: "IBM PC", description: "The IBM PC"}]
         };
 
         return new Response(hardware, 200)

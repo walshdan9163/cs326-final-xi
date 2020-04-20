@@ -25,10 +25,10 @@ app
         res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
     })
     .get('/hardware/:hardwareId', (req,res) => {
-        res.sendFile(path.resolve(__dirname + '/../src/public/views/tech.html'));
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/hardware.html'));
     })
     .get('/software/:softwareId', (req,res) => {
-        res.sendFile(path.resolve(__dirname + '/../src/public/views/tech.html'));
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/software.html'));
     })
     .get('/account', (req,res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/accountpage.html'));
@@ -86,6 +86,14 @@ app.get("/api/software", (req, res) => {
 app.post("/api/media", (req, res) => {
     const controller = new MediaController();
     const response: Response = controller.post(req.body);
+
+    res.send(response.toString());
+});
+
+// Media: Get one
+app.get("/api/media/:mediaId", (req, res) => {
+    const controller = new MediaController();
+    const response: Response = controller.get(parseInt(req.params.mediaId, 10));
 
     res.send(response.toString());
 });

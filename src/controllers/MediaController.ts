@@ -7,9 +7,9 @@ export default class MediaController extends AbstractController {
     // Defines the GET by ID method for a piece of media.
     public get(id: number): Response {
         const media: Media = {
-            id,
+            id: 1,
             name: "AppleII",
-            URL: "http://AppleII.jpg"
+            URL: "https://mercari-images.global.ssl.fastly.net/photos/m77335878796_1.jpg?1557359214"
         };
 
         return new Response(media, 200)
