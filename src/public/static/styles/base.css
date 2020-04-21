@@ -45,6 +45,40 @@ p {
 }
 
 /**
+ * Buttons
+ */
+
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
+    background-color: #C3C3C3 !important;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+    border-radius: 0%;
+    color: black;
+    font-weight: 700;
+}
+
+.btn-primary:hover {
+    background-color: #e8e8e8 !important;
+    color: black;
+    font-weight: 800;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+    transition: all 1s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+}
+
+
+/**
  * Header (But really footer.)
  */
 .header-global {
