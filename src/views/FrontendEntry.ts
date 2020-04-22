@@ -136,7 +136,12 @@ window.addEventListener('load', () => {
                 body: JSON.stringify(data),
             })
                 .then((response: Response) => response.json())
-                .then((data) => console.log('Successfully added hardware to:', data));
+                .then((data) => {
+                    console.log('Successfully added hardware to:', data);
+                    if(data.id) {
+                        alert("Successfully Added Hardware to Account.");
+                    }
+                });
         });
     }
 
@@ -159,7 +164,12 @@ window.addEventListener('load', () => {
                 body: JSON.stringify(data),
             })
                 .then((response: Response) => response.json())
-                .then((data) => console.log('Successfully deleted hardware from:', data));
+                .then((data) => {
+                    console.log('Successfully deleted hardware from:', data);
+                    if(data.id) {
+                        alert("Successfully Deleted Hardware from Account.");
+                    }
+                });
         })
     }
 
@@ -182,7 +192,12 @@ window.addEventListener('load', () => {
                 body: JSON.stringify(data),
             })
                 .then((response: Response) => response.json())
-                .then((data) => console.log('Successfully added software to:', data));
+                .then((data) => {
+                    console.log('Successfully added software to:', data);
+                    if(data.id) {
+                        alert("Successfully Added Software to Account.");
+                    }
+                });
         });
     }
 
@@ -205,7 +220,12 @@ window.addEventListener('load', () => {
                 body: JSON.stringify(data),
             })
                 .then((response: Response) => response.json())
-                .then((data) => console.log('Successfully deleted software from:', data));
+                .then((data) => {
+                    console.log('Successfully deleted software from:', data);
+                    if(data.id) {
+                        alert("Successfully Deleted Hardware from Account.");
+                    }
+                });
         })
     }
 });
