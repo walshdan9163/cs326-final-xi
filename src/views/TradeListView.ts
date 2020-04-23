@@ -17,6 +17,18 @@ export class SoftwareListView extends AbstractView {
     }
 
     render(): Element {
-        return null;
+        const returnElement = document.createElement('div');
+
+        this.state.forEach((trade: Trade) => {
+            const listElement = document.createElement('a');
+            listElement.classList.add('list-group-item');
+            listElement.classList.add('list-group-item-action');
+            listElement.innerText = trade.hardwareToTrade.name;
+            listElement.href = '/hardware/' + trade.hardwareToTrade.id;
+
+            returnElement.appendChild(listElement);
+        });
+
+        return returnElement;
     }
 }
