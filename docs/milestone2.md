@@ -23,6 +23,7 @@ Create a new piece of hardware.<br/>
 
 ```POST /api/software```
 
+
 Create a new piece of software.<br/>
 
 ```POST /api/media``` 
@@ -60,6 +61,16 @@ GET requests that facilitate the viewing of information about objects. Specific 
 View a user account/profile.<br/>
 
 
+```GET /api/user/[id]/software```
+
+Get single piece of hardware that is associated with user.<br/>
+
+
+```GET /api/user/[id]/hardware```
+
+Get single piece of hardware that is associated with user.<br/>
+
+
 ```GET /api/hardware?sort=popular&page=2```
 
 Gets list of hardware (paginated, can also be sorted for display on the front page).<br/>
@@ -78,6 +89,11 @@ Gets single piece of hardware.<br/>
 ```GET /api/software/[id]```
 
 Gets a single piece of software.<br/>
+
+
+```GET /api/media/[id]```
+
+Gets a single piece of media.<br/>
 
 
 ```GET /api/tag/[name]```
@@ -122,7 +138,10 @@ DIVISION OF LABOR
 
 
 ### Dan Walsh ###
-Setup Heroku deployment
+Setup Heroku deployment, automated deployment</br>
+Created views to allow for dynamic data on homepage, user account page</br>
+Further styled webpages</br>
+Setup routing with Express</br>
 
 ### Jackson Weber ###
 Drew out API Planning/drafted original API</br>
