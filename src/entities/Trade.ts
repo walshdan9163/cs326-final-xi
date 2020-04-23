@@ -1,5 +1,9 @@
-// TODO: Implement trade entity: should be something like:
-// Owner: User
-// HardwareToTrade: Hardware
-// Recipient: User
-// Accepted: boolean
+import User from "./User";
+import Hardware from "./Hardware";
+
+export default interface Trade {
+    owner: User;
+    recipient: User;
+    hardwareToTrade: Hardware;
+    accepted: boolean;
+}
