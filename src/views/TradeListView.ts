@@ -7,8 +7,9 @@ export class TradeListView extends AbstractView {
     async onStateChange(): Promise<boolean> {
         // Validate state change.
         if(this.state.length > 0 &&
-            this.state[0].id &&
-            this.state[0].name) {
+            this.state[0].owner &&
+            this.state[0].recipient &&
+            this.state[0].hardwareToTrade) {
             return true;
         }
 
