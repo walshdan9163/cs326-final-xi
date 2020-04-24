@@ -1,4 +1,5 @@
 import {HardwareListView} from './HardwareListView';
+import {TradeListView} from './TradeListView';
 import {SoftwareListView} from './SoftwareListView';
 import {SoftwareItemImageView} from './SoftwareItemImageView';
 import {SoftwareItemDescriptionView} from './SoftwareItemDescriptionView';
@@ -28,6 +29,17 @@ window.addEventListener('load', () => {
             .then((response) => response.json())
             .then((data) => {
                 accountHardwareListView.setState(data);
+            });
+    }
+
+    const accountTradeList = document.getElementById('account-trades-list');
+    if(accountTradeList) {
+        const accountTradeListView = new TradeListView(accountTradeList);
+
+        fetch("api/user/1/trades")
+            .then((response) => response.json())
+            .then((data) => {
+                accountTradeListView.setState(data);
             });
     }
     
