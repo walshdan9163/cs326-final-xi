@@ -2,6 +2,7 @@ import AbstractController from "./AbstractController";
 import User from "../entities/User";
 import Hardware from "../entities/Hardware";
 import Software from "../entities/Software";
+import Trade from "../entities/Trade";
 import Response from "../Response";
 
 export default class UserController extends AbstractController {
@@ -49,6 +50,43 @@ export default class UserController extends AbstractController {
             }];
 
         return new Response(hardwareList, 200)
+    }
+
+    // Returns a list of trades the user is involved in
+    public userTrades(userId: number): Response {
+        const user1: User = {
+            id: 1,
+            email: 'user1@user.com',
+            password: 'password'
+        };
+        const user2: User = {
+            id: 2,
+            email: 'toddhoward@bethesda.net',
+            password: 'skyrim'
+        };
+        const tradeList: Trade[] = [
+            {
+                owner: user1,
+                recipient: user2,
+                hardwareToTrade: {
+                    id: 1,
+                    name: "Apple II",
+                    description: "The Apple II"
+                },
+                accepted: false
+            },
+            {
+                owner: user2,
+                recipient: user1,
+                hardwareToTrade: {
+                    id: 2,
+                    name: "Commodore 64",
+                    description: "The Commodore 64"
+                },
+                accepted: true
+            }
+        ];
+        return new Response(tradeList, 200);
     }
 
     public associateHardware(data: any, userId: string): Response {
