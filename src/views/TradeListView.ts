@@ -3,7 +3,7 @@ import Trade from "../entities/Trade";
 
 // TODO: This is where updates to the state of TradeList on User accounts happens. Check the other files for implementation
 // TODO: details. This constitutes the basis of the frontend.
-export class SoftwareListView extends AbstractView {
+export class TradeListView extends AbstractView {
     async onStateChange(): Promise<boolean> {
         // Validate state change.
         if(this.state.length > 0 &&
