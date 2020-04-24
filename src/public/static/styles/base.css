@@ -55,21 +55,21 @@ p {
     background-color: #C3C3C3 !important;
     border-top: 1px solid white;
     border-left: 1px solid white;
-    border-right: 1px solid rgb(0, 0, 0);
-    border-bottom: 1px solid rgb(0, 0, 0);
+    border-right: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
     border-radius: 0%;
     color: black;
     font-weight: 700;
 }
 
 .btn-primary:hover {
-    background-color: #e8e8e8 !important;
+    background-color: #C3C3C3 !important;
     color: black;
     font-weight: 800;
-    border-top: 1px solid white;
-    border-left: 1px solid white;
-    border-right: 1px solid rgb(0, 0, 0);
-    border-bottom: 1px solid rgb(0, 0, 0);
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
     transition: all 1s ease;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
