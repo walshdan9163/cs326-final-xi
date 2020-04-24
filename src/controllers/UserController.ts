@@ -66,6 +66,7 @@ export default class UserController extends AbstractController {
         };
         const tradeList: Trade[] = [
             {
+                id: 1,
                 owner: user1,
                 recipient: user2,
                 hardwareToTrade: {
@@ -76,6 +77,7 @@ export default class UserController extends AbstractController {
                 accepted: false
             },
             {
+                id: 2,
                 owner: user2,
                 recipient: user1,
                 hardwareToTrade: {
