@@ -36,7 +36,7 @@ window.addEventListener('load', () => {
     if(accountTradeList) {
         const accountTradeListView = new TradeListView(accountTradeList);
 
-        fetch("api/user/1/trades")
+        fetch("/api/user/1/trades")
             .then((response) => response.json())
             .then((data) => {
                 accountTradeListView.setState(data);

@@ -175,7 +175,7 @@ app.post("/api/:userId/software/delete", (req, res) => {
 });
 
 // Media: Delete by ID.
-app.delete("/api/:mediaId", (req, res) => {
+app.delete("/api/media/:mediaId", (req, res) => {
     const controller = new MediaController();
     const response: Response = controller.delete(req.params.mediaId);
 
@@ -216,9 +216,11 @@ app.post("/api/trade/:tradeId/accept", (req, res) => {
 });
 
 // Rejects (deletes) trade
-app.delete("/api/trade/:tradeId/reject", (req, res) => {
+app.delete("/api/trade/:tradeId", (req, res) => {
     const controller = new TradeController();
     const response: Response = controller.delete(parseInt(req.params.tradeId));
+
+    res.send(response.toString());
 });
 
 app.get("*", (req, res) => {
