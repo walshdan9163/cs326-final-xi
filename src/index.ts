@@ -182,7 +182,6 @@ app.delete("/api/media/:mediaId", (req, res) => {
     res.send(response.toString());
 });
 
-// TODO: Add routing for API calls for trades. Will need one for creating new trades, one for updating the values of that trade once the recipient accepts/declines.
 // GETs one trade
 app.get("/api/trade/:tradeId", (req, res) => {
     const controller = new TradeController();

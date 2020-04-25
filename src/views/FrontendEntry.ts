@@ -5,6 +5,9 @@ import {SoftwareItemImageView} from './SoftwareItemImageView';
 import {SoftwareItemDescriptionView} from './SoftwareItemDescriptionView';
 import {HardwareItemImageView} from './HardwareItemImageView';
 import {HardwareItemDescriptionView} from './HardwareItemDescriptionView';
+import {TradeDescriptionView} from './TradeDescriptionView';
+import Trade from '../entities/Trade';
+import { json } from 'express';
 
 window.addEventListener('load', () => {
 
@@ -32,6 +35,7 @@ window.addEventListener('load', () => {
             });
     }
 
+    // Hooks up account trade list
     const accountTradeList = document.getElementById('account-trade-list');
     if(accountTradeList) {
         const accountTradeListView = new TradeListView(accountTradeList);
@@ -126,6 +130,54 @@ window.addEventListener('load', () => {
             .then((response) => response.json())
             .then((data) => {
                 hardwareItemImageView.setState(data);
+            });
+    }
+
+    const tradeDescription = document.getElementById('trade-detail');
+    if(tradeDescription) {
+        const tradeDescriptionView = new TradeDescriptionView(tradeDescription);
+
+        const currentUrl: string = window.location.pathname;
+        const params: string[] = currentUrl.split('/');
+
+        fetch('/api/trade/' + params[2])
+            .then((response) => response.json())
+            .then((data) => {
+                tradeDescriptionView.setState(data)
+            });
+    }
+
+    const tradeItemDescription = document.getElementById('trade-hardware-detail');
+    if(tradeItemDescription){
+        const tradeItemDescriptionView = new HardwareItemDescriptionView(tradeItemDescription);
+
+        const currentUrl: string = window.location.pathname;
+        const params: string[] = currentUrl.split('/');
+        // let trade: Trade;
+
+        /* fetch('/api/trade/' + params[2])
+            .then((response) => console.log(response.json()))
+            .then((data) => trade = ((data as unknown) as Trade)); */
+
+        fetch('/api/hardware/' + params[2])
+            .then((response) => response.json())
+            .then((data) => {
+                tradeItemDescriptionView.setState(data);
+            });
+    }
+
+    
+    const tradeItemImage = document.getElementById('trade-hardware-detail--image');
+    if(tradeItemImage){
+        const tradeItemImageView = new HardwareItemImageView(tradeItemImage);
+
+        const currentUrl: string = window.location.pathname;
+        const params: string[] = currentUrl.split('/');
+
+        fetch('/api/media/' + params[2])
+            .then((response) => response.json())
+            .then((data) => {
+                tradeItemImageView.setState(data);
             });
     }
 
@@ -241,7 +293,97 @@ window.addEventListener('load', () => {
         })
     }
 
+    // Creates new trade
+    const createTradeButton = document.getElementById('create-trade-button');
+    if(createTradeButton) {
+        createTradeButton.addEventListener('click', () => {
+            /* const currentUrl: string = window.location.pathname;
+            const hardwareId = currentUrl.split('/')[2];
+            const ownerId = "1" */
+            // change this with actual DB
+            const data: Trade = {
+                id: 1,
+                owner: {
+                    id: 1,
+                    email: 'user1@user.com',
+                    password: 'password'
+                },
+                recipient: {
+                    id: 2,
+                    email: 'toddhoward@bethesda.net',
+                    password: 'skyrim'
+                },
+                hardwareToTrade: {
+                    id: 1,
+                    name: "Apple II",
+                    description: "The Apple II"
+                },
+                accepted: false
+            };
+
+            fetch('/api/trade', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                    body: JSON.stringify(data),
+            })
+                .then((response: Response) => response.json())
+                .then((data) => {
+                    console.log('Successfully created trade for:', data);
+                    if(data.id) {
+                        alert("Successfully Created Trade.");
+                    }
+                });
+        });
+    }
+
     // Accepts pending trade
-    
+    const acceptTradeButton = document.getElementById('trade-accept-button');
+    if(acceptTradeButton) {
+        acceptTradeButton.addEventListener('click', () => {
+            const currentUrl: string = window.location.pathname;
+
+            const tradeId = currentUrl.split('/')[2];
+
+            fetch(`/api/trade/${tradeId}/accept`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((response: Response) => response.json())
+                .then((data) => {
+                    console.log('Successfully added hardware to:', data);
+                    if(data.id) {
+                        alert("Successfully Accepted Trade.");
+                    }
+                });
+        });
+    }
+
+    // Rejects pending trade
+    const declineTradeButton = document.getElementById('trade-decline-button');
+    if(declineTradeButton) {
+        declineTradeButton.addEventListener('click', () => {
+            const currentUrl: string = window.location.pathname;
+
+            const tradeId = currentUrl.split('/')[2];
+
+            fetch(`/api/trade/${tradeId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((response: Response) => response.json())
+                .then((data) => {
+                    console.log('Successfully deleted hardware from:', data);
+                    if(data.id) {
+                        alert("Successfully Declined Trade.");
+                    }
+                });
+        })
+    }
 
 });

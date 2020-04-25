@@ -54,38 +54,54 @@ export default class UserController extends AbstractController {
 
     // Returns a list of trades the user is involved in
     public userTrades(userId: number): Response {
-        const user1: User = {
-            id: 1,
-            email: 'user1@user.com',
-            password: 'password'
-        };
-        const user2: User = {
-            id: 2,
-            email: 'toddhoward@bethesda.net',
-            password: 'skyrim'
-        };
         const tradeList: Trade[] = [
             {
                 id: 1,
-                owner: user1,
-                recipient: user2,
+                owner: {
+                    id: 1,
+                    email: 'user1@user.com',
+                    password: 'password',
+                    hardware: [{
+                        id: 1,
+                        name: "Apple II",
+                        description: "The Apple II"
+                    }]
+                },
+                recipient: {
+                    id: 2,
+                    email: 'toddhoward@bethesda.net',
+                    password: 'skyrim'
+                },
                 hardwareToTrade: {
                     id: 1,
                     name: "Apple II",
                     description: "The Apple II"
                 },
-                accepted: false
+                accepted: true
             },
             {
-                id: 2,
-                owner: user2,
-                recipient: user1,
+                id: 1,
+                owner: {
+                    id: 2,
+                    email: 'toddhoward@bethesda.net',
+                    password: 'skyrim',
+                },
+                recipient: {
+                    id: 1,
+                    email: 'user1@user.com',
+                    password: 'password',
+                    hardware: [{
+                        id: 2,
+                        name: "IBM PC",
+                        description: "The IBM PC"
+                    }]
+                },
                 hardwareToTrade: {
                     id: 2,
-                    name: "Commodore 64",
-                    description: "The Commodore 64"
+                    name: "IBM PC",
+                    description: "The IBM PC"
                 },
-                accepted: true
+                accepted: false
             }
         ];
         return new Response(tradeList, 200);

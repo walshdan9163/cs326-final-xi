@@ -1,5 +1,3 @@
-// TODO: Define the API methods called from index.ts here. See other controllers for example implementation.
-
 import AbstractController from "./AbstractController";
 import User from "../entities/User";
 import Hardware from "../entities/Hardware";
@@ -10,7 +8,8 @@ import Response from "../Response";
 export default class TradeController extends AbstractController {
     // defines GET by ID for a trade.
     public get(id: number): Response {
-        const trade: Trade = {
+        const trades: Trade[] = [
+            {
             id: 1,
             owner: {
                 id: 1,
@@ -28,8 +27,29 @@ export default class TradeController extends AbstractController {
                 description: "The Apple II"
             },
             accepted: false
+        },
+        {
+            id: 2,
+            owner: {
+                id: 2,
+                email: 'toddhoward@bethesda.net',
+                password: 'skyrim'
+            },
+            recipient: {
+                id: 1,
+                email: 'user1@user.com',
+                password: 'password'
+            },
+            hardwareToTrade: {
+                id: 2,
+                name: "IBM PC",
+                description: "The IBM PC"
+            },
+            accepted: false
         }
-        return new Response(trade, 200);
+    ];
+    return new Response(trades.find(trade => trade.id === id), 200);
+
     }
 
     // defines POST for creation of new trades
