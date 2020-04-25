@@ -7,6 +7,7 @@ import UserController from "./controllers/UserController";
 import Response from "./Response";
 
 import path = require('path');
+import TradeController from "./controllers/TradeController";
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -32,6 +33,9 @@ app
     })
     .get('/account', (req,res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/accountpage.html'));
+    })
+    .get('/trade/:tradeId', (req,res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/trade.html'));
     });
 
 // Hardware: Create
@@ -179,12 +183,42 @@ app.delete("/api/:mediaId", (req, res) => {
 });
 
 // TODO: Add routing for API calls for trades. Will need one for creating new trades, one for updating the values of that trade once the recipient accepts/declines.
-// User: Get many trades
+// GETs one trade
+app.get("/api/trade/:tradeId", (req, res) => {
+    const controller = new TradeController();
+    const response: Response = controller.get(parseInt(req.params.tradeId, 10));
+
+    res.send(response.toString());
+});
+
+// User: GETs many trades user is involved in
 app.get("/api/user/:userId/trades", (req, res) => {
     const controller = new UserController();
     const response: Response = controller.userTrades(parseInt(req.params.userId, 10));
 
     res.send(response.toString());
+});
+
+// Creates new trade
+app.post("/api/trade", (req, res) => {
+    const controller = new TradeController();
+    const response: Response = controller.post(req.body);
+
+    res.send(response.toString());
+});
+
+// Accepts trade
+app.post("api/trade/:tradeId/accept", (req, res) => {
+    const controller = new TradeController();
+    const response: Response = controller.accept(parseInt(req.params.tradeId));
+
+    res.send(response.toString());
+});
+
+// Rejects (deletes) trade
+app.delete("api/trade/:tradeId/reject", (req, res) => {
+    const controller = new TradeController();
+    const response: Response = controller.delete(parseInt(req.params.tradeId));
 });
 
 app.get("*", (req, res) => {
