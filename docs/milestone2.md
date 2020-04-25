@@ -132,9 +132,18 @@ HEROKU URL
 -----------
 https://retrotechconnection.herokuapp.com/#
 
+POSTMAN URL
+-----------
+https://documenter.getpostman.com/view/9923727/Szf3ZVRs?version=latest </br>
+Note: not all API calls are logged in Postman as of submission.
+
 DIVISION OF LABOR
 -----------------
 ### Will Hammond ###
+Implemented all of the funcitonality needed for trades (including entity, views, HTML pages, and API)</br>
+Styled webpages</br>
+Wrote API calls and routing</br>
+Tested API</br>
 
 
 ### Dan Walsh ###
@@ -155,6 +164,9 @@ PAGE SCREENSHOTS
 -----------------
 ![](images/HomePageView.png)
 The homepage allows users to see lists of both popular software and hardware. From these lists, the user can click on any piecce of software or hardware and be redirected to their corresponding information pages. The Homepage also includes a search functionality that returns specific hardware or software.</br>
+
+![](images/HardwarePageView.png)
+The hardware page allows users to see information associated with a piece of hardware, as well as associated images of links. From this page, the user can choose to add or delete the hardware from their account, as well as create a new trade for the item.
 
 ![](images/SoftwarePageView.png)
 The software page allows users to see information associated with a piece of software, as well as associated images or links. From this page the user can also choose to add the software from their account, or delete it.</br>
