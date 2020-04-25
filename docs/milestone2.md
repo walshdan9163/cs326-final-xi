@@ -36,19 +36,14 @@ Create a new piece of media.<br/>
 Creates a new tag.<br/>
 
 
-```POST /api/user/[id]/hardware```
-
-Add hardware to user account.<br/>
-
-
-```POST /api/user/[id]/software```
-
-Add software to a user account.<br/>
-
-
 ```POST /api/user```
 
 Create a new user.
+
+```POST /api/trade```
+
+Create a new trade.
+
 
 READ API
 --------
@@ -100,13 +95,28 @@ Gets a single piece of media.<br/>
 
 View the results associated with a tag beings searched.
 
+```GET /api/trade/:tradeId```
+
+Returns a trade with the given tradeId.
+
+```GET /api/user/:userId/trade```
+
+Returns all of a User's trades.
+
 UPDATE API
 -----------
-### Overview ###
-Update functionality can be achieved by a combination of DELETE and POST requests.
+```POST /api/user/[id]/hardware```
 
-### Specific Note About Trades ###
-You can facilitate a trade by calling (in the case of a hardware trade) the DELETE method on the trader's account id (for the specific piece of hardware) and the corresponding POST method on the recipient's account id.
+Update a User with a new piece of assocaited hardware.<br/>
+
+
+```POST /api/user/[id]/software```
+
+Update a User with a new piece of associated software.<br/>
+
+```POST /api/trade/:tradeId/accept```
+
+Updates a trade to the be in the accepted state.
 
 DELETE API
 -----------
@@ -127,6 +137,10 @@ Delete a piece of software from a user account.<br/>
 ```DELETE /api/media/[id]```
 
 Delete media (should look for references and delete from that content).
+
+```DELETE /api/trade/:tradeId```
+
+Delete's a trade (to be called when a trade is rejected).
 
 HEROKU URL
 -----------
