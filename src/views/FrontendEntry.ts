@@ -32,11 +32,11 @@ window.addEventListener('load', () => {
             });
     }
 
-    const accountTradeList = document.getElementById('account-trades-list');
+    const accountTradeList = document.getElementById('account-trade-list');
     if(accountTradeList) {
         const accountTradeListView = new TradeListView(accountTradeList);
 
-        fetch("/api/user/1/trades")
+        fetch("/api/user/1/trade")
             .then((response) => response.json())
             .then((data) => {
                 accountTradeListView.setState(data);
