@@ -240,4 +240,8 @@ window.addEventListener('load', () => {
                 });
         })
     }
+
+    // Accepts pending trade
+    
+
 });
