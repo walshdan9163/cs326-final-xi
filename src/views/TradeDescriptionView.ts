@@ -23,8 +23,10 @@ export class TradeDescriptionView extends AbstractView {
 
         // add trade header
         const itemHeader = document.createElement('h5');
+        let icon = document.createElement('i');
+        icon.setAttribute('data-feather', 'phone-call');
+        itemHeader.appendChild(icon); //TODO fix this
         itemHeader.innerText = this.state["accepted"] ? 'COMPLETED' : 'PENDING';
-        const icon = document.createElement('i'); // TODO Change icon later
         itemHeader.classList.add('card-title');
         item.appendChild(itemHeader);
 

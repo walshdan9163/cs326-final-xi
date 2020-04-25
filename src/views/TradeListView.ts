@@ -26,7 +26,6 @@ export class TradeListView extends AbstractView {
             let innerText: string = (trade.accepted ? 'PENDING: ' : '') + trade.hardwareToTrade.name;
             listElement.innerText = innerText;
             listElement.href = '/trade/' + trade.id;
-            // listElement.addEventListener('click', this.handleTrade.bind(trade));
 
             returnElement.appendChild(listElement);
         });
