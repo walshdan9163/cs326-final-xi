@@ -49,7 +49,7 @@ export default class TradeController extends AbstractController {
             },
             accepted: false
         }
-    ]
+    ];
     return new Response(trades.find(trade => trade.id === id), 200);
 
     }

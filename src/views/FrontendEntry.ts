@@ -7,6 +7,7 @@ import {HardwareItemImageView} from './HardwareItemImageView';
 import {HardwareItemDescriptionView} from './HardwareItemDescriptionView';
 import {TradeDescriptionView} from './TradeDescriptionView';
 import Trade from '../entities/Trade';
+import { json } from 'express';
 
 window.addEventListener('load', () => {
 
@@ -290,6 +291,51 @@ window.addEventListener('load', () => {
                     }
                 });
         })
+    }
+
+    // Creates new trade
+    const createTradeButton = document.getElementById('create-trade-button');
+    if(createTradeButton) {
+        createTradeButton.addEventListener('click', () => {
+            /* const currentUrl: string = window.location.pathname;
+            const hardwareId = currentUrl.split('/')[2];
+            const ownerId = "1" */
+            // change this with actual DB
+            const data: Trade = {
+                id: 1,
+                owner: {
+                    id: 1,
+                    email: 'user1@user.com',
+                    password: 'password'
+                },
+                recipient: {
+                    id: 2,
+                    email: 'toddhoward@bethesda.net',
+                    password: 'skyrim'
+                },
+                hardwareToTrade: {
+                    id: 1,
+                    name: "Apple II",
+                    description: "The Apple II"
+                },
+                accepted: false
+            };
+
+            fetch('/api/trade', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                    body: JSON.stringify(data),
+            })
+                .then((response: Response) => response.json())
+                .then((data) => {
+                    console.log('Successfully created trade for:', data);
+                    if(data.id) {
+                        alert("Successfully Created Trade.");
+                    }
+                });
+        });
     }
 
     // Accepts pending trade
