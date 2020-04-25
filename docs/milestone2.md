@@ -148,4 +148,16 @@ Drew out API Planning/drafted original API</br>
 Created Controller setup</br>
 Created Original entities</br>
 Setup Gulp to compile both frontend and backend with single command (for Heroku/ease)</br>
-Created AbstractView system to manage frontend state change
+Created AbstractView system to manage frontend state change</br>
+Built initial routing setup.</br>
+
+PAGE SCREENSHOTS
+-----------------
+![](images/HomePageView.png)
+The homepage allows users to see lists of both popular software and hardware. From these lists, the user can click on any piecce of software or hardware and be redirected to their corresponding information pages. The Homepage also includes a search functionality that returns specific hardware or software.</br>
+
+![](images/SoftwarePageView.png)
+The software page allows users to see information associated with a piece of software, as well as associated images or links. From this page the user can also choose to add the software from their account, or delete it.</br>
+
+![](images/AccountPageView.png)
+The account page allows users to see a list of their currently owned hardware and software as well as both their accepted and pending trades. 
