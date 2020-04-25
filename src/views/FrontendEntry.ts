@@ -5,6 +5,7 @@ import {SoftwareItemImageView} from './SoftwareItemImageView';
 import {SoftwareItemDescriptionView} from './SoftwareItemDescriptionView';
 import {HardwareItemImageView} from './HardwareItemImageView';
 import {HardwareItemDescriptionView} from './HardwareItemDescriptionView';
+import Trade from '../entities/Trade';
 
 window.addEventListener('load', () => {
 
@@ -32,6 +33,7 @@ window.addEventListener('load', () => {
             });
     }
 
+    // Hooks up account trade list
     const accountTradeList = document.getElementById('account-trade-list');
     if(accountTradeList) {
         const accountTradeListView = new TradeListView(accountTradeList);
@@ -126,6 +128,40 @@ window.addEventListener('load', () => {
             .then((response) => response.json())
             .then((data) => {
                 hardwareItemImageView.setState(data);
+            });
+    }
+
+    const tradeItemDescription = document.getElementById('trade-hardware-detail');
+    if(tradeItemDescription){
+        const tradeItemDescriptionView = new HardwareItemDescriptionView(tradeItemDescription);
+
+        const currentUrl: string = window.location.pathname;
+        const params: string[] = currentUrl.split('/');
+        let trade: Trade;
+
+        /* fetch('/api/trade/' + params[2])
+            .then((response) => console.log(response.json()))
+            .then((data) => trade = ((data as unknown) as Trade)); */
+
+        fetch('/api/hardware/' + params[2])
+            .then((response) => response.json())
+            .then((data) => {
+                tradeItemDescriptionView.setState(data);
+            });
+    }
+
+    
+    const tradeItemImage = document.getElementById('trade-hardware-detail--image');
+    if(tradeItemImage){
+        const tradeItemImageView = new HardwareItemImageView(tradeItemImage);
+
+        const currentUrl: string = window.location.pathname;
+        const params: string[] = currentUrl.split('/');
+
+        fetch('/api/media/' + params[2])
+            .then((response) => response.json())
+            .then((data) => {
+                tradeItemImageView.setState(data);
             });
     }
 

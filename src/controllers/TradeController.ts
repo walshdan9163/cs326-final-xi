@@ -31,7 +31,7 @@ export default class TradeController extends AbstractController {
             accepted: false
         },
         {
-            id: 1,
+            id: 2,
             owner: {
                 id: 2,
                 email: 'toddhoward@bethesda.net',
