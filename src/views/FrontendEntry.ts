@@ -5,6 +5,7 @@ import {SoftwareItemImageView} from './SoftwareItemImageView';
 import {SoftwareItemDescriptionView} from './SoftwareItemDescriptionView';
 import {HardwareItemImageView} from './HardwareItemImageView';
 import {HardwareItemDescriptionView} from './HardwareItemDescriptionView';
+import {TradeDescriptionView} from './TradeDescriptionView';
 import Trade from '../entities/Trade';
 
 window.addEventListener('load', () => {
@@ -131,13 +132,27 @@ window.addEventListener('load', () => {
             });
     }
 
+    const tradeDescription = document.getElementById('trade-detail');
+    if(tradeDescription) {
+        const tradeDescriptionView = new TradeDescriptionView(tradeDescription);
+
+        const currentUrl: string = window.location.pathname;
+        const params: string[] = currentUrl.split('/');
+
+        fetch('/api/trade/' + params[2])
+            .then((response) => response.json())
+            .then((data) => {
+                tradeDescriptionView.setState(data)
+            });
+    }
+
     const tradeItemDescription = document.getElementById('trade-hardware-detail');
     if(tradeItemDescription){
         const tradeItemDescriptionView = new HardwareItemDescriptionView(tradeItemDescription);
 
         const currentUrl: string = window.location.pathname;
         const params: string[] = currentUrl.split('/');
-        let trade: Trade;
+        // let trade: Trade;
 
         /* fetch('/api/trade/' + params[2])
             .then((response) => console.log(response.json()))
@@ -278,6 +293,51 @@ window.addEventListener('load', () => {
     }
 
     // Accepts pending trade
-    
+    const acceptTradeButton = document.getElementById('trade-accept-button');
+    if(acceptTradeButton) {
+        acceptTradeButton.addEventListener('click', () => {
+            const currentUrl: string = window.location.pathname;
+
+            const tradeId = currentUrl.split('/')[2];
+
+            fetch(`/api/trade/${tradeId}/accept`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((response: Response) => response.json())
+                .then((data) => {
+                    console.log('Successfully added hardware to:', data);
+                    if(data.id) {
+                        alert("Successfully Accepted Trade.");
+                    }
+                });
+        });
+    }
+
+    // Rejects pending trade
+    const declineTradeButton = document.getElementById('trade-decline-button');
+    if(declineTradeButton) {
+        declineTradeButton.addEventListener('click', () => {
+            const currentUrl: string = window.location.pathname;
+
+            const tradeId = currentUrl.split('/')[2];
+
+            fetch(`/api/trade/${tradeId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((response: Response) => response.json())
+                .then((data) => {
+                    console.log('Successfully deleted hardware from:', data);
+                    if(data.id) {
+                        alert("Successfully Declined Trade.");
+                    }
+                });
+        })
+    }
 
 });
