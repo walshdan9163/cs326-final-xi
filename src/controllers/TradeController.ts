@@ -1,5 +1,3 @@
-// TODO: Define the API methods called from index.ts here. See other controllers for example implementation.
-
 import AbstractController from "./AbstractController";
 import User from "../entities/User";
 import Hardware from "../entities/Hardware";
