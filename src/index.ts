@@ -192,7 +192,7 @@ app.get("/api/trade/:tradeId", (req, res) => {
 });
 
 // User: GETs many trades user is involved in
-app.get("/api/user/:userId/trades", (req, res) => {
+app.get("/api/user/:userId/trade", (req, res) => {
     const controller = new UserController();
     const response: Response = controller.userTrades(parseInt(req.params.userId, 10));
 
@@ -208,15 +208,15 @@ app.post("/api/trade", (req, res) => {
 });
 
 // Accepts trade
-app.post("api/trade/:tradeId/accept", (req, res) => {
+app.post("/api/trade/:tradeId/accept", (req, res) => {
     const controller = new TradeController();
-    const response: Response = controller.accept(parseInt(req.params.tradeId));
+    const response: Response = controller.accept(parseInt(req.params.tradeId, 10));
 
     res.send(response.toString());
 });
 
 // Rejects (deletes) trade
-app.delete("api/trade/:tradeId/reject", (req, res) => {
+app.delete("/api/trade/:tradeId/reject", (req, res) => {
     const controller = new TradeController();
     const response: Response = controller.delete(parseInt(req.params.tradeId));
 });

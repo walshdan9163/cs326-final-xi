@@ -87,27 +87,19 @@ export default class TradeController extends AbstractController {
         }
 
         // Ensures recipient doesn't already have the hardware
-        if(!trade.recipient.hardware.find(hardware => hardware.id === mockHardware.id)){
+        if(trade.recipient.hardware.find(hardware => hardware.id === mockHardware.id)){
             return new Response("Cannot add duplicate hardware to User.", 400);
         }
 
-        const data = {id: mockHardware.id}
-            fetch(`/api/${trade.owner.id}/hardware/delete`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({id: mockHardware.id}),
-            })
-                .then((data: any) => {
-                    console.log('Successfully deleted hardware from:', data);
-                    if(data.id) {
-                        trade.accepted = true;
-                        return new Response(trade, 200);
-                    }
-                });
+        // Finds the index of the hardware to delete from the user and removes it.
+        const index: number = trade.owner.hardware.findIndex(hardwareToDelete => hardwareToDelete.id === trade.hardwareToTrade.id);
+        if(index > -1) {
+            trade.owner.hardware.splice(index, 1);
+            trade.accepted = true;
+            return new Response(trade, 200);
+        }
 
-        return new Response('error trading hardware', 400);
+        return new Response("User does not have this hardware", 400);
     }
 
     // defines delete for if a trade is rejected

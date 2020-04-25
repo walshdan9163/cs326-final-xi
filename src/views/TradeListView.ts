@@ -25,12 +25,18 @@ export class TradeListView extends AbstractView {
             const listElement = document.createElement('a');
             listElement.classList.add('list-group-item');
             listElement.classList.add('list-group-item-action');
-            listElement.innerText = trade.hardwareToTrade.name;
-            listElement.href = '/hardware/' + trade.hardwareToTrade.id;
+            let innerText: string = (trade.accepted ? 'PENDING: ' : '') + trade.hardwareToTrade.name;
+            listElement.innerText = innerText;
+            listElement.href = '/trade/' + trade.id;
+            // listElement.addEventListener('click', this.handleTrade.bind(trade));
 
             returnElement.appendChild(listElement);
         });
 
         return returnElement;
+    }
+
+    handleTrade(trade: Trade) {
+        alert(trade.hardwareToTrade);
     }
 }

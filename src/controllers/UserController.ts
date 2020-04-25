@@ -144,7 +144,7 @@ export default class UserController extends AbstractController {
             description: "Web application IDE"
         };
 
-        // Return an error if the user tries to add duplicate hardware to account.
+        // Return an error if the user tries to add duplicate software to account.
         if(mockUser.hardware.find(software => software.id === data.id)) {
             return new Response("Cannot add duplicate Software to User.", 400);
         }
