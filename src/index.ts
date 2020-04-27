@@ -25,6 +25,12 @@ app
     .get("/home", (req, res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
     })
+    .get("/login", (req, res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/login.html'));
+    })
+    .get("/register", (req, res) => {
+        res.sendFile(path.resolve(__dirname + '/../src/public/views/register.html'));
+    })
     .get('/hardware/:hardwareId', (req,res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/hardware.html'));
     })
