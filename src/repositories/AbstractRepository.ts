@@ -1,10 +1,9 @@
-import * as pgPromise from 'pg-promise';
-
 export default abstract class AbstractRepository {
     protected db: any;
 
     constructor() {
-        const pgp = pgPromise({});
+        // @ts-ignore
+        const pgp = require('pg-promise')();
         this.db = pgp(process.env.DB_URL);
     }
 

@@ -21,7 +21,6 @@ const buildTables = (cb) => {
             description varchar(4096)
         )
     `).then(() => {
-        console.log('Created Hardware Table');
         return db.none(`
             CREATE TABLE IF NOT EXISTS software(
                 id          SERIAL PRIMARY KEY,
@@ -29,10 +28,21 @@ const buildTables = (cb) => {
                 description varchar(4096)
             )
         `);
-    }).then(() => {
-        console.log('Created Software Table');
-        cb();
-    });
+    }).then(cb);
+}
+
+const addDummy = (cb) => {
+    let db = pgp(process.env.DB_URL);
+
+    db.none(`
+        INSERT INTO hardware
+        VALUES(DEFAULT, 'Apple II', 'The Apple II');
+    `).then(() => {
+        return db.none(`
+            INSERT INTO hardware
+            VALUES(DEFAULT, 'IBM PC', 'The IBM PC')
+        `);
+    }).then(cb);
 }
 
 const buildBackend = () => {
@@ -82,9 +92,10 @@ const clean = () => {
     return del(["./dist/"]);
 };
 
-const build = parallel(buildBackend, buildFrontend);
+const build = parallel(buildBackend, buildFrontend, buildTables);
 
 exports.default = series(build, parallel(watchDir, startServer));
 exports.buildTables = buildTables;
+exports.addDummyData = addDummy;
 exports.build = build;
 exports.clean = clean;

@@ -7,6 +7,7 @@ export default class TagController extends AbstractController {
     // Defines the GET by ID method for a tag.
     public async get(id: number): Promise<Response> {
         const media: Tag = {
+            id: 1,
             name: "Apple"
         };
 

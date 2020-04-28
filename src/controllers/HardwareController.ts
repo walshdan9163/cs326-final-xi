@@ -1,35 +1,24 @@
 import AbstractController from "./AbstractController";
 import Hardware from "../entities/Hardware";
 import Response from "../Response";
+import HardwareRepository from "../repositories/HardwareRepository";
 
+// NOTE: HOOKED UP TO THE DATABASE!
 export default class HardwareController extends AbstractController {
 
     // Defines the GET by ID method for a piece of hardware.
     public async get(id: number): Promise<Response> {
-
-        // Will need to update this once we have a real database to get the hardware with correct ID from the DB.
-        const hardwareList: Hardware[] = [
-            {
-            id: 1,
-            name: "Apple II",
-            description: "The Apple II"
-            },
-            {
-            id: 2,
-            name: "IBM PC",
-            description: "The IBM PC"
-            }];
-
-        return new Response(hardwareList.find(hardware => hardware.id === id), 200)
+        const repository: HardwareRepository = new HardwareRepository();
+        const dbData: any = await repository.read(id);
+        return new Response(dbData, 200);
     }
 
+    // Returns all hardware
     public async getMany(): Promise<Response> {
-        const hardware: Hardware[] = [
-            {id: 1, name: "Apple II", description: "The Apple II"},
-            {id: 2, name: "IBM PC", description: "The IBM PC"}
-        ];
+        const repository: HardwareRepository = new HardwareRepository();
 
-        return new Response(hardware, 200);
+        const dbData: any = await repository.search({});
+        return new Response(dbData, 200);
     }
 
     // Defines the POST (creation) for a piece of hardware.
@@ -38,11 +27,9 @@ export default class HardwareController extends AbstractController {
             return new Response({error: "Does not have expected fields for hardware."}, 400);
         }
 
-        return new Response({
-            id: 1,
-            name: data.name,
-            description: data.description
+        const repository: HardwareRepository = new HardwareRepository();
+        const dbData: any = await repository.create(data);
 
-        }, 201);
+        return new Response(dbData, 201);
     }
 };

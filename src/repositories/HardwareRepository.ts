@@ -1,15 +1,16 @@
 import AbstractRepository from "./AbstractRepository";
 import Hardware from "../entities/Hardware";
 
-class HardwareRepository extends AbstractRepository {
+export default class HardwareRepository extends AbstractRepository {
 
     // Creates a new hardware object with a new ID in the database.
     async create(data: any): Promise<any> {
         const hardware = data as Hardware;
 
-        return this.db.none(`
+        return this.db.one(`
             INSERT INTO hardware 
             VALUES (DEFAULT, $1, $2)
+            RETURNING id, name, description
         `, [
             hardware.name,
             hardware.description
@@ -48,11 +49,12 @@ class HardwareRepository extends AbstractRepository {
     async update(id: number, data: any): Promise<any> {
         const hardware = data as Hardware;
 
-        return this.db.none(`
+        return this.db.one(`
             UPDATE hardware
             SET name=$1,
                 description=$2
             WHERE id=$3
+            RETURNING id, name, description
         `, [
             hardware.name,
             hardware.description,
