@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" href="../static/faviconTwo.ico" type="image/x-icon">
-    <title>Homepage</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <head>
+        <link rel="icon" href="../static/faviconTwo.ico" type="image/x-icon">
+        <title>Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- <link rel="stylesheet" href="./css/w95.css"> -->
-    <link rel="stylesheet" href="../static/styles/base.css">
+        <!-- <link rel="stylesheet" href="./css/w95.css"> -->
+        <link rel="stylesheet" href="../static/styles/base.css">
 
-    <script src="/js/bundle.js"></script>
-</head>
-<body>
-<div class="d-flex flex-column parent-container">
-    <main class="flex-grow-1">
-        <div class="container">
-            <form class="text-center mt-5" id="register-form">
-                <label for="register-email">Email:</label><br>
-                <input type="email" id="register-email" name="email"><br>
-                <label for="register-password">Password:</label><br>
-                <input type="password" id="register-password" name="password">
-                <div class="mt-4">
-                    <button id="hardware-add-button" type="button" class="btn btn-primary ml-2 mb-2 mr-1">Login</button>
+        <script src="/js/bundle.js"></script>
+    </head>
+    <body>
+        <div class="d-flex flex-column parent-container">
+            <main class="flex-grow-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="container mt-5">
+                                <div class="card-body">
+                                    <form class="text-center mt-5" id="register-form">
+                                        <label for="register-email">Email:</label><br>
+                                        <input type="email" id="register-email" name="email"><br>
+                                        <label for="register-password">Password:</label><br>
+                                        <input type="password" id="register-password" name="password">
+                                        <div class="mt-4 mb-4">
+                                            <button id="login-button" type="button" class="btn btn-primary ml-2 mb-2 mr-1">Login</button>
+                                        </div>
+                                    </form>
+                                    <div class="text-center mt-4">
+                                        <p>Don't have an account?</p>
+                                        <div class="mb-2">
+                                            <a id="register-login-button" href="./register" class="btn btn-primary ml-2 mb-2 mr-1">Register</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </main>
         </div>
-    </main>
-    <script>
-        feather.replace()
-    </script>
-</body>
+        <script>
+            feather.replace()
+        </script>
+    </body>
 </html>
