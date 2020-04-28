@@ -17,16 +17,39 @@
         <div class="d-flex flex-column parent-container">
             <main class="flex-grow-1">
                 <div class="container">
-                    <form class="text-center mt-5" id="register-form">
-                        <label for="register-email">Email:</label><br>
-                        <input type="email" id="register-email" name="email"><br>
-                        <label for="register-password">Password:</label><br>
-                        <input type="password" id="register-password" name="password">
-                        <div class="mt-4">
-                            <button id="hardware-add-button" type="button" class="btn btn-primary ml-2 mb-2 mr-1">Register</button>
+                    <div class="row">
+                        <div class="col-md-3">
+    
                         </div>
-                    </form>
+                        <div class="col-md-6 ml-0 mr-0">
+                            <div class="container mt-5">
+                                <div class="card-body">
+                                    <form class="text-center mt-5" id="register-form">
+                                        <label for="register-email">Email:</label><br>
+                                        <input type="email" id="register-email" name="email"><br>
+                                        <label for="register-password">Password:</label><br>
+                                        <input type="password" id="register-password" name="password">
+                                        <div class="mt-4">
+                                            <button id="register-button" type="button" class="btn btn-primary ml-2 mb-2 mr-1">Register</button>
+                                        </div>
+                                    </form>
+                                    <div class="text-center mt-4">
+                                        <p>Already have an account?</p>
+                                        <div class="mb-2">
+                                            <button id="register-login-button" type="button" href="./login" class="btn btn-primary ml-2 mb-2 mr-1">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                    </div>
                 </div>
+
             </main>
         <script>
             feather.replace()
