@@ -16,17 +16,17 @@ const buildTables = (cb) => {
     let db = pgp(process.env.DB_URL);
     db.none(`
         CREATE TABLE IF NOT EXISTS hardware(
-            id int,
-            name varchar(255),
+            id          SERIAL PRIMARY KEY,
+            name        varchar(255) NOT NULL,
             description varchar(4096)
         )
     `).then(() => {
         console.log('Created Hardware Table');
         return db.none(`
             CREATE TABLE IF NOT EXISTS software(
-                 id int,
-                 name varchar(255),
-                 description varchar(4096)
+                id          SERIAL PRIMARY KEY,
+                name        varchar(255) NOT NULL,
+                description varchar(4096)
             )
         `);
     }).then(() => {

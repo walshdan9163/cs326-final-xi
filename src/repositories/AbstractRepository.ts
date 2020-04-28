@@ -1,16 +1,25 @@
+import * as pgPromise from 'pg-promise';
+
 export default abstract class AbstractRepository {
+    protected db: any;
+
+    constructor() {
+        const pgp = pgPromise({});
+        this.db = pgp(process.env.DB_URL);
+    }
+
     // Should return the created object.
-    public abstract async create(): Promise<any>;
+    public abstract async create(data: any): Promise<any>;
 
     // Should return the read object.
-    public abstract async ead(): Promise<any>;
+    public abstract async read(id: number): Promise<any>;
 
     // Should return the updated object.
-    public abstract async update(): Promise<any>;
+    public abstract async update(id: number, data: any): Promise<any>;
 
     // Should return false if error is received from the DB on delete.
-    public abstract async delete(): Promise<boolean>;
+    public abstract async delete(id: number): Promise<boolean>;
 
     // Should return results of a search query.
-    public abstract async search(): Promise<any>;
+    public abstract async search(data: any): Promise<any>;
 }
