@@ -8,7 +8,7 @@ import Response from "../Response";
 export default class UserController extends AbstractController {
 
     // Defines the GET by ID method for a user.
-    public get(id: number): Response {
+    public async get(id: number): Promise<Response> {
         const user: User = {
             id,
             email: "me@email.com",
@@ -19,7 +19,7 @@ export default class UserController extends AbstractController {
     }
 
     // Returns a list of software associated with account.
-    public userSoftware(userId: number): Response{
+    public async userSoftware(userId: number): Promise<Response> {
         const softwareList: Software[] = [
             {
                 id: 1,
@@ -36,7 +36,7 @@ export default class UserController extends AbstractController {
     }
 
     // Returns a list of hardware associated with account.
-    public userHardware(userId: number): Response{
+    public async userHardware(userId: number): Promise<Response> {
         const hardwareList: Hardware[] = [
             {
                 id: 1,
@@ -53,7 +53,7 @@ export default class UserController extends AbstractController {
     }
 
     // Returns a list of trades the user is involved in
-    public userTrades(userId: number): Response {
+    public async userTrades(userId: number): Promise<Response> {
         const tradeList: Trade[] = [
             {
                 id: 1,
@@ -107,7 +107,7 @@ export default class UserController extends AbstractController {
         return new Response(tradeList, 200);
     }
 
-    public associateHardware(data: any, userId: string): Response {
+    public async associateHardware(data: any, userId: string): Promise<Response> {
         if (!data.id) {
             return new Response({error: "Expected an id associated with a piece of hardware."}, 400);
         }
@@ -140,7 +140,7 @@ export default class UserController extends AbstractController {
     }
 
     // Associates a piece of software with a user
-    public associateSoftware(data: any, userId: string): Response {
+    public async associateSoftware(data: any, userId: string): Promise<Response> {
         if(!data.id) {
             return new Response({error: "Expected a valid software ID"}, 400);
         }
@@ -170,7 +170,7 @@ export default class UserController extends AbstractController {
     }
 
     // Delete hardware from user
-    public deleteHardware(data: any, userId: string): Response {
+    public async deleteHardware(data: any, userId: string): Promise<Response> {
         if(!data.id) {
             return new Response({error: "Expected a valid hardware ID"}, 400);
         }
@@ -211,7 +211,7 @@ export default class UserController extends AbstractController {
         return new Response("User does not have this hardware", 400);
     }
 
-    public deleteSoftware(data: any, userId: string): Response {
+    public async deleteSoftware(data: any, userId: string): Promise<Response> {
         if(!data.id) {
             return new Response({error: "Expected a valid software ID"}, 400);
         }
@@ -253,7 +253,7 @@ export default class UserController extends AbstractController {
     }
 
     // Defines the POST (creation) for a user.
-    public post(data: any): Response {
+    public async post(data: any): Promise<Response> {
         if (!((data as User).email)) {
             return new Response({error: "Does not have expected fields for a user."}, 400);
         }

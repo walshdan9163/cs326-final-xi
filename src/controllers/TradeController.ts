@@ -7,7 +7,7 @@ import Response from "../Response";
 
 export default class TradeController extends AbstractController {
     // defines GET by ID for a trade.
-    public get(id: number): Response {
+    public async get(id: number): Promise<Response> {
         const trades: Trade[] = [
             {
             id: 1,
@@ -53,7 +53,7 @@ export default class TradeController extends AbstractController {
     }
 
     // defines POST for creation of new trades
-    public post(data: any): Response {
+    public async post(data: any): Promise<Response> {
         if (!(data as Trade).owner) {
             return new Response({error: "Does not have expected fields for a trade."}, 400);
         }
@@ -80,7 +80,7 @@ export default class TradeController extends AbstractController {
     }
 
     // defines UPDATE method for accepting a trade
-    public accept(id: number): Response {
+    public async accept(id: number): Promise<Response> {
         // mock hardware for testing
         const mockHardware: Hardware = {
             id: 1,
@@ -123,7 +123,7 @@ export default class TradeController extends AbstractController {
     }
 
     // defines delete for if a trade is rejected
-    public delete(id: number): Response {
+    public async delete(id: number): Promise<Response> {
         const trade: Trade = {
             id: 1,
             owner: {

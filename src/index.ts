@@ -41,185 +41,208 @@ app
 // Hardware: Create
 app.post("/api/hardware", (req, res) => {
     const controller = new HardwareController();
-    const response: Response = controller.post(req.body);
-
-    res.send(response.toString());
+    controller.post(req.body)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Hardware: Get one
 app.get("/api/hardware/:hardwareId", (req, res) => {
     const controller = new HardwareController();
-    const response: Response = controller.get(parseInt(req.params.hardwareId, 10));
-
-    res.send(response.toString());
+    controller.get(parseInt(req.params.hardwareId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Hardware: Get many
 app.get("/api/hardware", (req, res) => {
     const controller = new HardwareController();
-    const response: Response = controller.getMany();
-
-    res.send(response.toString());
+    controller.getMany()
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Software: Create
 app.post("/api/software", (req, res) => {
     const controller = new SoftwareController();
-    const response: Response = controller.post(req.body);
-
-    res.send(response.toString());
+    controller.post(req.body)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Software: Get one
 app.get("/api/software/:softwareId", (req, res) => {
     const controller = new SoftwareController();
-    const response: Response = controller.get(parseInt(req.params.softwareId, 10));
-
-    res.send(response.toString());
+    controller.get(parseInt(req.params.softwareId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Software: Get many
 app.get("/api/software", (req, res) => {
     const controller = new SoftwareController();
-    const response: Response = controller.getMany();
-
-    res.send(response.toString());
+    controller.getMany()
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Media: Create
 app.post("/api/media", (req, res) => {
     const controller = new MediaController();
-    const response: Response = controller.post(req.body);
-
-    res.send(response.toString());
+    controller.post(req.body)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Media: Get one
 app.get("/api/media/:mediaId", (req, res) => {
     const controller = new MediaController();
-    const response: Response = controller.get(parseInt(req.params.mediaId, 10));
-
-    res.send(response.toString());
+    controller.get(parseInt(req.params.mediaId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Tag: Create
 app.post("/api/tag", (req, res) => {
     const controller = new TagController();
-    const response: Response = controller.post(req.body);
-
-    res.send(response.toString());
+    controller.post(req.body)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // User: Create
 app.post("/api/user", (req, res) => {
     const controller = new UserController();
-    const response: Response = controller.post(req.body);
-
-    res.send(response.toString());
+    controller.post(req.body)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // User: Get one
 app.get("/api/user/:userId", (req, res) => {
     const controller = new UserController();
-    const response: Response = controller.get(parseInt(req.params.userId, 10));
-
-    res.send(response.toString());
+    controller.get(parseInt(req.params.userId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // User: Get software
 app.get("/api/user/:userId/software", (req, res) => {
     const controller = new UserController();
-    const response: Response = controller.userSoftware(parseInt(req.params.userId, 10));
-
-    res.send(response.toString());
+    controller.userSoftware(parseInt(req.params.userId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // User: Get hardware
 app.get("/api/user/:userId/hardware", (req, res) => {
     const controller = new UserController();
-    const response: Response = controller.userHardware(parseInt(req.params.userId, 10));
-
-    res.send(response.toString());
+    controller.userHardware(parseInt(req.params.userId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // User: Associate hardware to user account.
 app.post("/api/:userId/hardware", (req, res) => {
    const controller = new UserController();
-   const response: Response = controller.associateHardware(req.body, req.params.userId);
-
-   res.send(response.toString());
+   controller.associateHardware(req.body, req.params.userId)
+       .then((response: Response) => {
+           res.send(response.toString());
+       });
 });
 
 // User: Associate software to user account.
 app.post("/api/:userId/software", (req, res) => {
     const controller = new UserController();
-    const response: Response = controller.associateSoftware(req.body, req.params.userId);
-
-    res.send(response.toString());
+    controller.associateSoftware(req.body, req.params.userId)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // User: Delete (un-associate) hardware from user account.
 app.post("/api/:userId/hardware/delete", (req, res) => {
     const controller = new UserController();
-    const response: Response = controller.deleteHardware(req.body, req.params.userId);
-
-    res.send(response.toString());
+    controller.deleteHardware(req.body, req.params.userId)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // User: Delete (un-associate) software from user account.
 app.post("/api/:userId/software/delete", (req, res) => {
     const controller = new UserController();
-    const response: Response = controller.deleteSoftware(req.body, req.params.userId);
-
-    res.send(response.toString());
+    controller.deleteSoftware(req.body, req.params.userId)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Media: Delete by ID.
 app.delete("/api/media/:mediaId", (req, res) => {
     const controller = new MediaController();
-    const response: Response = controller.delete(req.params.mediaId);
-
-    res.send(response.toString());
+    controller.delete(req.params.mediaId)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // GETs one trade
 app.get("/api/trade/:tradeId", (req, res) => {
     const controller = new TradeController();
-    const response: Response = controller.get(parseInt(req.params.tradeId, 10));
-
-    res.send(response.toString());
+    controller.get(parseInt(req.params.tradeId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // User: GETs many trades user is involved in
 app.get("/api/user/:userId/trade", (req, res) => {
     const controller = new UserController();
-    const response: Response = controller.userTrades(parseInt(req.params.userId, 10));
-
-    res.send(response.toString());
+    controller.userTrades(parseInt(req.params.userId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Creates new trade
 app.post("/api/trade", (req, res) => {
     const controller = new TradeController();
-    const response: Response = controller.post(req.body);
-
-    res.send(response.toString());
+    controller.post(req.body)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Accepts trade
 app.post("/api/trade/:tradeId/accept", (req, res) => {
     const controller = new TradeController();
-    const response: Response = controller.accept(parseInt(req.params.tradeId, 10));
-
-    res.send(response.toString());
+    controller.accept(parseInt(req.params.tradeId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 // Rejects (deletes) trade
 app.delete("/api/trade/:tradeId", (req, res) => {
     const controller = new TradeController();
-    const response: Response = controller.delete(parseInt(req.params.tradeId));
-
-    res.send(response.toString());
+    controller.delete(parseInt(req.params.tradeId))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
 });
 
 app.get("*", (req, res) => {

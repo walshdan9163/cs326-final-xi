@@ -5,7 +5,7 @@ import Response from "../Response";
 export default class TagController extends AbstractController {
 
     // Defines the GET by ID method for a tag.
-    public get(id: number): Response {
+    public async get(id: number): Promise<Response> {
         const media: Tag = {
             name: "Apple"
         };
@@ -14,7 +14,7 @@ export default class TagController extends AbstractController {
     }
 
     // Defines the POST (creation) for a tag.
-    public post(data: any): Response {
+    public async post(data: any): Promise<Response> {
         if (!((data as Tag).name)) {
             return new Response({error: "Does not have expected fields for tag"}, 400);
         }
