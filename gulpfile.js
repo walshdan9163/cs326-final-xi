@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { series, parallel, watch } = require('gulp');
 const gulp = require('gulp');
 const gls = require('gulp-live-server');
@@ -6,9 +8,32 @@ const del = require("del");
 const browserify = require("browserify");
 const source = require("vinyl-source-stream");
 const tsify = require("tsify");
+const pgp = require('pg-promise')(/*options*/);
 
 let server = null;
 
+const buildTables = (cb) => {
+    let db = pgp(process.env.DB_URL);
+    db.none(`
+        CREATE TABLE IF NOT EXISTS hardware(
+            id int,
+            name varchar(255),
+            description varchar(4096)
+        )
+    `).then(() => {
+        console.log('Created Hardware Table');
+        return db.none(`
+            CREATE TABLE IF NOT EXISTS software(
+                 id int,
+                 name varchar(255),
+                 description varchar(4096)
+            )
+        `);
+    }).then(() => {
+        console.log('Created Software Table');
+        cb();
+    });
+}
 
 const buildBackend = () => {
     const tsProject = ts.createProject('tsconfig.json');
@@ -60,5 +85,6 @@ const clean = () => {
 const build = parallel(buildBackend, buildFrontend);
 
 exports.default = series(build, parallel(watchDir, startServer));
+exports.buildTables = buildTables;
 exports.build = build;
 exports.clean = clean;

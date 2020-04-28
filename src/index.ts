@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express from "express";
 import HardwareController from "./controllers/HardwareController";
 import SoftwareController from "./controllers/SoftwareController";
