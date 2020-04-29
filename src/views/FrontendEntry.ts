@@ -95,11 +95,23 @@ window.addEventListener('load', () => {
         const currentUrl: string = window.location.pathname;
         const params: string[] = currentUrl.split('/');
 
-        fetch('/api/media/' + params[2])
+        let mediaId: string = "";
+
+        fetch('/api/softwaremedia/' + params[2])
             .then((response) => response.json())
             .then((data) => {
-                softwareItemImageView.setState(data);
-            });
+                if(data != null){
+                    mediaId = data.mediaId;
+                    fetch('/api/media/' + mediaId)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            softwareItemImageView.setState(data);
+                        });
+                }
+                else{
+                    softwareItemImageView.setState({"URL":"https://i1.wp.com/jasonfarman.com/delayedresponse/wp-content/uploads/2017/06/hour-glass.gif", "name":"No image"});
+                }
+            })
     }
 
     // Makes an API call and calls setState on the hardware detail hardwareDetail box.
@@ -126,11 +138,24 @@ window.addEventListener('load', () => {
         const currentUrl: string = window.location.pathname;
         const params: string[] = currentUrl.split('/');
 
-        fetch('/api/media/' + params[2])
+        let mediaId: string = "";
+        
+
+        fetch('/api/hardwaremedia/' + params[2])
             .then((response) => response.json())
             .then((data) => {
-                hardwareItemImageView.setState(data);
-            });
+                if(data != null){
+                    mediaId = data.mediaId;
+                    fetch('/api/media/' + mediaId)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            hardwareItemImageView.setState(data);
+                        });
+                }
+                else{
+                    hardwareItemImageView.setState({"URL":"https://i1.wp.com/jasonfarman.com/delayedresponse/wp-content/uploads/2017/06/hour-glass.gif", "name":"No image"});
+                }
+            })
     }
 
     const tradeDescription = document.getElementById('trade-detail');

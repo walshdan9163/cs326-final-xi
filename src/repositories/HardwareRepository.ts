@@ -38,6 +38,16 @@ export default class HardwareRepository extends AbstractRepository {
         ]);
     }
 
+    // returns ID of media related to hardware object.
+    async relatedMedia(id: number): Promise<any> {
+        return this.db.oneOrNone(`
+            SELECT mediaId FROM mediaRelation
+            WHERE techType = 'hardware' and techId=$1
+        `, [
+            id
+        ]);
+    }
+
     // Returns all hardware from the database.
     async search(data: any): Promise<any> {
         return this.db.many(`

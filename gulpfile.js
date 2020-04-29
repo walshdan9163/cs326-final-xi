@@ -36,6 +36,15 @@ const buildTables = (cb) => {
                 url         varchar(4096)
             )
         `);
+    }).then(() => {
+        return db.none(`
+            CREATE TABLE IF NOT EXISTS mediaRelation(
+                mediaId         int references media(id),
+                techId          int NOT NULL,
+                techType        varchar(255) NOT NULL,
+                PRIMARY KEY (mediaId, techId, techtype)
+            )
+        `);
     }).then(cb);
 }
 

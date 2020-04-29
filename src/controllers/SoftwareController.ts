@@ -12,6 +12,13 @@ export default class SoftwareController extends AbstractController {
         return new Response(dbData, 200);
     }
 
+    // Gets media related to this hardware ID
+    public async getRelatedMedia(id: number): Promise<Response> {
+        const repository: SoftwareRepository = new SoftwareRepository();
+        const dbData: any = await repository.relatedMedia(id);
+        return new Response(dbData, 200);
+    }
+
     public async getMany(): Promise<Response> {
         const repository: SoftwareRepository = new SoftwareRepository();
         const dbData = await repository.search({});

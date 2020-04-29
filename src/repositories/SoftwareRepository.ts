@@ -38,6 +38,16 @@ export default class SoftwareRepository extends AbstractRepository {
         ]);
     }
 
+    // returns ID (or null) of media related to software object.
+    async relatedMedia(id: number): Promise<any> {
+        return this.db.oneOrNone(`
+            SELECT mediaId FROM mediaRelation
+            WHERE techType = 'software' and techId=$1
+        `, [
+            id
+        ]);
+    }
+
     // Returns all software from the database.
     async search(data: any): Promise<any> {
         return this.db.any(`

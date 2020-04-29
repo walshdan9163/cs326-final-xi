@@ -117,6 +117,22 @@ app.get("/api/media/:mediaId", (req, res) => {
         });
 });
 
+app.get("/api/softwaremedia/:softwareId", (req, res) => {
+    const controller = new SoftwareController();
+    controller.getRelatedMedia(parseInt(req.params.softwareId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
+});
+
+app.get("/api/hardwaremedia/:hardwareId", (req, res) => {
+    const controller = new HardwareController();
+    controller.getRelatedMedia(parseInt(req.params.hardwareId, 10))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
+});
+
 // Tag: Create
 app.post("/api/tag", (req, res) => {
     const controller = new TagController();

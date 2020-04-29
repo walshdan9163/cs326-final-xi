@@ -13,6 +13,13 @@ export default class HardwareController extends AbstractController {
         return new Response(dbData, 200);
     }
 
+    // Gets media related to this hardware ID
+    public async getRelatedMedia(id: number): Promise<Response> {
+        const repository: HardwareRepository = new HardwareRepository();
+        const dbData: any = await repository.relatedMedia(id);
+        return new Response(dbData, 200);
+    }
+
     // Returns all hardware
     public async getMany(): Promise<Response> {
         const repository: HardwareRepository = new HardwareRepository();
