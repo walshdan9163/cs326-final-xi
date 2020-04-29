@@ -1,64 +1,64 @@
 import AbstractRepository from "./AbstractRepository";
-import Hardware from "../entities/Hardware";
+import Media from "../entities/Media";
 
-export default class HardwareRepository extends AbstractRepository {
+export default class MediaRepository extends AbstractRepository {
 
-    // Creates a new hardware object with a new ID in the database.
+    // Creates a new media object with a new ID in the database.
     async create(data: any): Promise<any> {
-        const hardware = data as Hardware;
+        const media = data as Media;
 
         return this.db.one(`
-            INSERT INTO hardware 
+            INSERT INTO media 
             VALUES (DEFAULT, $1, $2)
-            RETURNING id, name, description
+            RETURNING id, name, url
         `, [
-            hardware.name,
-            hardware.description
+            media.name,
+            media.URL,
         ]);
     }
 
-    // Deletes a hardware object by ID in the database.
+    // Deletes a media object by ID in the database.
     async delete(id: number): Promise<boolean> {
         // TODO: How should I handle returning boolean?
         return this.db.none(`
-            DELETE FROM hardware
+            DELETE FROM media
             WHERE id=$1
         `, [
             id
         ]);
     }
 
-    // Reads a hardware object by ID from the database.
+    // Reads a media object by ID from the database.
     async read(id: number): Promise<any> {
         return this.db.one(`
-            SELECT * FROM hardware
+            SELECT * FROM media
             WHERE id=$1
         `, [
             id
         ]);
     }
 
-    // Returns all hardware from the database.
+    // Returns all media from the database.
     async search(data: any): Promise<any> {
         return this.db.many(`
-            SELECT * FROM hardware
+            SELECT * FROM media
         `);
     }
 
-    // Updates a hardware object by ID with new data in the database.
+    // Updates a media object by ID with new data in the database.
     async update(id: number, data: any): Promise<any> {
-        const hardware = data as Hardware;
+        const media = data as Media;
 
         return this.db.one(`
             UPDATE hardware
             SET name=$1,
-                description=$2
+                url=$2
             WHERE id=$3
             RETURNING id, name, description
         `, [
-            hardware.name,
-            hardware.description,
-            hardware.id
+            media.name,
+            media.URL,
+            media.id
         ]);
     }
 

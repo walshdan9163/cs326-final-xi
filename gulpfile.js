@@ -28,6 +28,14 @@ const buildTables = (cb) => {
                 description varchar(4096)
             )
         `);
+    }).then(() => {
+        return db.none(`
+            CREATE TABLE IF NOT EXISTS media(
+                id          SERIAL PRIMARY KEY,
+                name        varchar(255) NOT NULL,
+                url         varchar(4096)
+            )
+        `);
     }).then(cb);
 }
 
@@ -41,6 +49,31 @@ const addDummy = (cb) => {
         return db.none(`
             INSERT INTO hardware
             VALUES(DEFAULT, 'IBM PC', 'The IBM PC')
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO hardware
+            VALUES(DEFAULT, 'IBM PC', 'The IBM PC')
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO software
+            VALUES(DEFAULT, 'Software item 1', 'The first software item')
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO software
+            VALUES(DEFAULT, 'Software Item 2', 'The second software item')
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO media
+            VALUES(DEFAULT, 'Media Item 1', 'The IBM PC')
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO media
+            VALUES(DEFAULT, 'Media Item 2', 'The IBM PC')
         `);
     }).then(cb);
 }

@@ -1,4 +1,5 @@
 import AbstractController from "./AbstractController";
+import SoftwareRepository from "../repositories/SoftwareRepository";
 import Software from "../entities/Software";
 import Response from "../Response";
 
@@ -6,28 +7,15 @@ export default class SoftwareController extends AbstractController {
 
     // Defines the GET by ID method for a piece of software.
     public async get(id: number): Promise<Response> {
-        const softwareList: Software[] = [
-            {
-                id: 1,
-                name: "Mac OS",
-                description: "The latest Mac OS"
-            },
-            {
-                id: 2,
-                name: "Photoshop",
-                description: "Probably should just pirate this"
-            }];
-
-        return new Response(softwareList.find(software => software.id === id), 200)
+        const repository: SoftwareRepository = new SoftwareRepository();
+        const dbData: any = await repository.read(id);
+        return new Response(dbData, 200);
     }
 
     public async getMany(): Promise<Response> {
-        const software: Software[] = [
-            {id: 1, name: "Mac OS", description: "The latest Mac OS"},
-            {id: 2, name: "Photoshop", description: "Probably should just pirate this"}
-        ];
-
-        return new Response(software, 200);
+        const repository: SoftwareRepository = new SoftwareRepository();
+        const dbData = await repository.search({});
+        return new Response(dbData, 200);
     }
 
     // Defines the POST (creation) for a piece of software.
@@ -36,10 +24,9 @@ export default class SoftwareController extends AbstractController {
             return new Response({error: "Does not have expected fields for software."}, 400);
         }
 
-        return new Response({
-            id: 1,
-            name: data.name,
-            description: data.description
-        }, 201);
+        const repository: SoftwareRepository = new SoftwareRepository();
+        const dbData = await repository.create(data);
+
+        return new Response(dbData, 200);
     }
 };
