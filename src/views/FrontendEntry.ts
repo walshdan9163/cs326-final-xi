@@ -230,7 +230,7 @@ window.addEventListener('load', () => {
                     .then((response: Response) => response.json())
                     .then((data) => {
                         if(data.id) {
-                            alert("Successfully Registration.");
+                            alert("Successfully Registered.");
                             location.pathname = '/home';
                         }
                     });
