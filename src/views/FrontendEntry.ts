@@ -206,7 +206,7 @@ window.addEventListener('load', () => {
             });
     }
 
-    const userLogin = document.getElementById('login-butotn');
+    const userLogin = document.getElementById('login-button');
     if(userLogin) {
         userLogin.addEventListener('click', () => {
             const userEmail: string = (<HTMLInputElement>document.getElementById('register-email')).value;
