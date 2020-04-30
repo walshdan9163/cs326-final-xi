@@ -93,3 +93,5 @@ Setup `pg-promise` in the project.</br>
 Connected database.</br>
 Configured Hardware entities/methods to use the database.</br>
 Drafted original DB schema.
+Documented database design.
+Configured Heroku to use Postgres DB.
