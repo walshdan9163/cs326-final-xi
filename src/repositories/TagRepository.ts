@@ -1,59 +1,58 @@
 import AbstractRepository from "./AbstractRepository";
-import Trade from "../entities/Trade";
+import Tag from "../entities/Tag";
 
-export default class TradeRepository extends AbstractRepository {
+export default class TagRepository extends AbstractRepository {
 
-    // Creates new trade
+    // Creates new tag
     async create(data: any): Promise<any> {
-        const trade = data as Trade;
+        const tag = data as string;
 
         return this.db.one(`
-            INSERT INTO trade
-            VALUES (DEFAULT, $1, $2, $3)
+            INSERT INTO tag
+            VALUES (DEFAULT, $1)
             RETURNING id
         `, [
-            trade.owner,
-            trade.recipient,
-            trade.hardwareToTrade.id
+            tag
         ]);
     }
 
-    // Reads existing trade
+    // Reads existing tag
     async read(id: number): Promise<any> {
         return this.db.one(`
-            SELECT * FROM trade
+            SELECT * FROM tag
             WHERE id=$1
             `, [
                 id
         ]);
     }
 
-    // Updates (accepts) trade
-    async update(id: number): Promise<any> {
+    // Updates tag
+    async update(id: number, value: string): Promise<any> {
         return this.db.none(`
-            UPDATE trade
-            SET accepted=true
+            UPDATE tag
+            SET name=$2
             WHERE id=$1
         `, [
-            id
+            id,
+            value
         ]);
     }
 
-    // Deletes (rejects) trade
+    // Deletes tag
     async delete(id: number): Promise<any> {
         return this.db.none(`
-            DELETE FROM trade
+            DELETE FROM tag
             WHERE id=$1
         `, [
             id
         ]);
     }
 
-    // Returns all trades
+    // Returns all tags
     async search(data: any) {
         return this.db.many(`
             SELECT *
-            FROM trade
+            FROM tag
         `);
     }
 }
