@@ -21,7 +21,7 @@ export default class TradeRepository extends AbstractRepository {
     // Reads existing trade
     async read(id: number): Promise<any> {
         return this.db.one(`
-            SELECT * FROM users
+            SELECT * FROM trade
             WHERE id=$1
             `, [
                 id
