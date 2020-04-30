@@ -206,6 +206,43 @@ window.addEventListener('load', () => {
             });
     }
 
+    const userLogin = document.getElementById('login-button');
+    if(userLogin) {
+        userLogin.addEventListener('click', () => {
+            const userEmail: string = (<HTMLInputElement>document.getElementById('register-email')).value;
+            const userPassword: string = (<HTMLInputElement>document.getElementById('register-password')).value;
+
+            // TODO add more verification of input (email contains @, etc)
+            if(userEmail === "" || userPassword === ""){
+                alert("Invalid email or password");
+            }
+            else {
+                // TODO Verify if email and password are legitimate
+
+                const data: any = {
+                    email: userEmail,
+                    password: userPassword
+                }
+
+                fetch(`/api/user`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then((response: Response) => response.json())
+                    .then((data) => {
+                        if(data.id) {
+                            alert("Successfully Logged In.");
+                            // TODO auth token?
+                            location.pathname = '/account';
+                        }
+                    });
+            }
+        })
+    }
+
     const userRegister = document.getElementById('register-button');
     if(userRegister){
         userRegister.addEventListener('click', () => {
@@ -236,13 +273,6 @@ window.addEventListener('load', () => {
                     });
             }
             
-        })
-    }
-
-    const userLogin = document.getElementById('login');
-    if(userLogin){
-        userLogin.addEventListener('click', () => {
-            // TODO User login
         })
     }
 
