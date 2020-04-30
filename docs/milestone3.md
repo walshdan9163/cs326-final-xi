@@ -90,6 +90,7 @@ Division of Labor
 
 ### Jackson Weber ###
 Setup `pg-promise` in the project.</br>
+Setup `dotenv` for enviroment variable storage.</br>
 Connected database.</br>
 Configured Hardware entities/methods to use the database.</br>
 Drafted original DB schema.</br>
