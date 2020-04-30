@@ -206,6 +206,46 @@ window.addEventListener('load', () => {
             });
     }
 
+    const userRegister = document.getElementById('register-button');
+    if(userRegister){
+        userRegister.addEventListener('click', () => {
+            const userEmail: string = (<HTMLInputElement>document.getElementById('register-email')).value;
+            const userPassword: string = (<HTMLInputElement>document.getElementById('register-password')).value;
+
+            if(userEmail === "" || userPassword === ""){
+                
+                alert("Invalid Email or Password")
+            }
+            else{
+                // TODO Verify that those are legitimate
+                const data: any = {email : userEmail, password: userPassword};
+
+                fetch(`/api/user`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then((response: Response) => response.json())
+                    .then((data) => {
+                        if(data.id) {
+                            alert("Successfully Registration.");
+                            location.pathname = '/home';
+                        }
+                    });
+            }
+            
+        })
+    }
+
+    const userLogin = document.getElementById('login');
+    if(userLogin){
+        userLogin.addEventListener('click', () => {
+            // TODO User login
+        })
+    }
+
     // Associates a piece of hardware to a user account.
     const addHardwareButton = document.getElementById('hardware-add-button');
     if(addHardwareButton) {

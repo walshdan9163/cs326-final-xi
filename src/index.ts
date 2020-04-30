@@ -117,6 +117,7 @@ app.get("/api/media/:mediaId", (req, res) => {
         });
 });
 
+// Media: Get ID of media related to software ID
 app.get("/api/softwaremedia/:softwareId", (req, res) => {
     const controller = new SoftwareController();
     controller.getRelatedMedia(parseInt(req.params.softwareId, 10))
@@ -125,6 +126,7 @@ app.get("/api/softwaremedia/:softwareId", (req, res) => {
         });
 });
 
+// Media: Get ID of media related to hardware ID
 app.get("/api/hardwaremedia/:hardwareId", (req, res) => {
     const controller = new HardwareController();
     controller.getRelatedMedia(parseInt(req.params.hardwareId, 10))

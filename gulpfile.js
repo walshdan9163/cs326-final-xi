@@ -30,6 +30,14 @@ const buildTables = (cb) => {
         `);
     }).then(() => {
         return db.none(`
+            CREATE TABLE IF NOT EXISTS users(
+                id          SERIAL,
+                email       varchar(255) PRIMARY KEY,
+                password    varchar(255) NOT NULL
+            )
+        `);
+    }).then(() => {
+        return db.none(`
             CREATE TABLE IF NOT EXISTS media(
                 id          SERIAL PRIMARY KEY,
                 name        varchar(255) NOT NULL,
@@ -45,6 +53,48 @@ const buildTables = (cb) => {
                 PRIMARY KEY (mediaId, techId, techtype)
             )
         `);
+    }).then(() => {
+        return db.none(`
+            CREATE TABLE IF NOT EXISTS tag(
+                id              SERIAL,
+                name            varchar(255) NOT NULL
+            )
+        `);
+    }).then(() => {
+        return db.none(`
+            CREATE TABLE IF NOT EXISTS trade(
+                id              SERIAL,
+                ownerId         int NOT NULL,
+                recipId         int NOT NULL,
+                techId          int NOT NULL,
+                accept          boolean
+            )
+        `);
+    }).then(() => {
+        return db.none(`
+            CREATE TABLE IF NOT EXISTS userOwnership(
+                userId          int NOT NULL,
+                techId          int NOT NULL,
+                techType        varchar(255),
+                PRIMARY KEY (userId, techId, techType)
+            )
+        `);
+    }).then(() => {
+        return db.none(`
+            CREATE TABLE IF NOT EXISTS tagRelation(
+                tagId           int NOT NULL,
+                techId          int NOT NULL,
+                type            varchar(255)
+            )
+        `);
+    }).then(() => {
+        return db.none(`
+            CREATE TABLE IF NOT EXISTS authentication(
+                userId          int NOT NULL,
+                token           varchar(4096),
+                exp             timestamp
+            )
+        `);
     }).then(cb);
 }
 
@@ -53,36 +103,91 @@ const addDummy = (cb) => {
 
     db.none(`
         INSERT INTO hardware
-        VALUES(DEFAULT, 'Apple II', 'The Apple II');
+        VALUES(DEFAULT, 'Hardware item 1', 'The first hardware item');
     `).then(() => {
         return db.none(`
             INSERT INTO hardware
-            VALUES(DEFAULT, 'IBM PC', 'The IBM PC')
+            VALUES(DEFAULT, 'Hardware item 2', 'The second hardware item');
         `);
     }).then(() => {
         return db.none(`
             INSERT INTO hardware
-            VALUES(DEFAULT, 'IBM PC', 'The IBM PC')
+            VALUES(DEFAULT, 'Hardware item 3', 'The third hardware item');
         `);
     }).then(() => {
         return db.none(`
             INSERT INTO software
-            VALUES(DEFAULT, 'Software item 1', 'The first software item')
+            VALUES(DEFAULT, 'Software item 1', 'The first software item');
         `);
     }).then(() => {
         return db.none(`
             INSERT INTO software
-            VALUES(DEFAULT, 'Software Item 2', 'The second software item')
+            VALUES(DEFAULT, 'Software Item 2', 'The second software item');
         `);
     }).then(() => {
         return db.none(`
             INSERT INTO media
-            VALUES(DEFAULT, 'Media Item 1', 'The IBM PC')
+            VALUES(DEFAULT, 'Media Item 1', 'https://i.redd.it/ole6mf1a45911.png');
         `);
     }).then(() => {
         return db.none(`
             INSERT INTO media
-            VALUES(DEFAULT, 'Media Item 2', 'The IBM PC')
+            VALUES(DEFAULT, 'Media Item 2', 'https://etc.usf.edu/presentations/extras/letters/fridge_magnets/yellow/03/2-400.png');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO users
+            VALUES(DEFAULT, 'exampleOne@email.com', 'password');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO users
+            VALUES(DEFAULT, 'exampleTwo@email.com', 'password');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO userOwnership
+            VALUES(1, 1, 'software');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO userOwnership
+            VALUES(1, 2, 'software');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO userOwnership
+            VALUES(1, 2, 'hardware');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO userOwnership
+            VALUES(2, 1, 'hardware');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO userOwnership
+            VALUES(2, 2, 'software');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO mediaRelation
+            VALUES(2, 2, 'software');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO mediaRelation
+            VALUES(2, 2, 'hardware');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO mediaRelation
+            VALUES(1, 1, 'software');
+        `);
+    }).then(() => {
+        return db.none(`
+            INSERT INTO mediaRelation
+            VALUES(1, 1, 'hardware');
         `);
     }).then(cb);
 }

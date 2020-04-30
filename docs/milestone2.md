@@ -90,6 +90,13 @@ Gets a single piece of software.<br/>
 
 Gets a single piece of media.<br/>
 
+```GET /api/softwaremedia/[id]```
+
+Gets an ID (if any) of media related to the passed software ID.<br/>
+
+```GET /api/hardwaremedia/[id]```
+
+Gets an ID (if any) of media related to the passed hardware ID.<br/>
 
 ```GET /api/tag/[name]```
 
