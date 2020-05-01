@@ -95,4 +95,6 @@ Connected database.</br>
 Configured Hardware entities/methods to use the database.</br>
 Drafted original DB schema.</br>
 Documented database design.</br>
-Configured Heroku to use Postgres DB.
+Configured Heroku to use Postgres DB.</br>
+Fixed viewing media on hardware and software pages.</br>
+User authorization and token validation.</br>
