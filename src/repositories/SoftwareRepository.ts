@@ -48,6 +48,19 @@ export default class SoftwareRepository extends AbstractRepository {
         ]);
     }
 
+    // Associates a piece of media to software.
+    async associateMedia(mediaId: string, softwareId: string): Promise<any> {
+        return this.db.one(`
+            INSERT INTO mediaRelation
+            VALUES ($1, $2, $3)
+            RETURNING mediaid, techid, techtype
+            `, [
+                mediaId,
+                softwareId,
+                'software'
+        ]);
+    }
+
     // Returns all software from the database.
     async search(data: any): Promise<any> {
         return this.db.any(`

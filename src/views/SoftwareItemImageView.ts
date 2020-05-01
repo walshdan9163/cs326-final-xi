@@ -20,7 +20,7 @@ export class SoftwareItemImageView extends AbstractView {
 
         const image = document.createElement('img');
         image.classList.add('card-img-top');
-        image.src = this.state["URL"];
+        image.src = this.state["url"];
         image.alt = this.state["name"];
 
         returnElement.appendChild(image);

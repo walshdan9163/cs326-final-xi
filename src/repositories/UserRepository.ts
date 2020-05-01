@@ -106,26 +106,28 @@ export default class UserRepository extends AbstractRepository {
     }
 
     async readUserSoftware(id: number): Promise<any> {
-        return this.db.any(`SELECT s.id, s.name, s.description
+        return this.db.any(`SELECT s.id, s.name, s.description, uo.techtype
         FROM software s
         JOIN userOwnership uo
         ON s.id = uo.techId 
         JOIN users u
         ON uo.userId = u.id
-        AND u.id = $1;`,
+        AND u.id = $1
+        WHERE uo.techtype = 'software'`,
         [
             id
         ]);
     }
 
     async readUserHardware(id: number): Promise<any> {
-        return this.db.any(`SELECT h.id, h.name, h.description
+        return this.db.any(`SELECT h.id, h.name, h.description, uo.techtype
         FROM hardware h
         JOIN userOwnership uo
         ON h.id = uo.techId 
         JOIN users u
         ON uo.userId = u.id
-        AND u.id = $1;`,
+        AND u.id = $1
+        WHERE uo.techtype = 'hardware'`,
         [
             id
         ]);
@@ -160,7 +162,7 @@ export default class UserRepository extends AbstractRepository {
         return this.db.none(`DELETE FROM userOwnership
         WHERE userId = $1
         AND techId = $2
-        AND techType = 'hardware';`,
+        AND techType = 'software';`,
         [
             id, softwareId
         ]);

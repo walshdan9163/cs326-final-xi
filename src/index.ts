@@ -172,7 +172,7 @@ app.get("/api/media/:mediaId", (req, res) => {
 });
 
 // Media: Get ID of media related to software ID
-app.get("/api/softwaremedia/:softwareId", (req, res) => {
+app.get("/api/software/:softwareId/media", (req, res) => {
     const controller = new SoftwareController();
     controller.getRelatedMedia(parseInt(req.params.softwareId, 10))
         .then((response: Response) => {
@@ -336,6 +336,15 @@ app.delete("/api/trade/:tradeId", (req, res) => {
 app.post("/api/hardware/:hardwareId/add-media", (req, res) => {
     const controller = new HardwareController();
     controller.associateMedia(req.body, req.params.hardwareId)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
+});
+
+// Associates Media to Software
+app.post("/api/software/:softwareId/add-media", (req, res) => {
+    const controller = new SoftwareController();
+    controller.associateMedia(req.body, req.params.softwareId)
         .then((response: Response) => {
             res.send(response.toString());
         });

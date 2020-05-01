@@ -97,11 +97,11 @@ window.addEventListener('load', () => {
 
         let mediaId: string = "";
 
-        fetch('/api/softwaremedia/' + params[2])
+        fetch(`/api/software/${params[2]}/media`)
             .then((response) => response.json())
             .then((data) => {
                 if(data != null){
-                    mediaId = data.mediaId;
+                    mediaId = data.mediaid;
                     fetch('/api/media/' + mediaId)
                         .then((response) => response.json())
                         .then((data) => {

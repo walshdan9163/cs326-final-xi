@@ -2,6 +2,7 @@ import AbstractController from "./AbstractController";
 import SoftwareRepository from "../repositories/SoftwareRepository";
 import Software from "../entities/Software";
 import Response from "../Response";
+import MediaRepository from "../repositories/MediaRepository";
 
 export default class SoftwareController extends AbstractController {
 
@@ -22,6 +23,17 @@ export default class SoftwareController extends AbstractController {
     public async getMany(): Promise<Response> {
         const repository: SoftwareRepository = new SoftwareRepository();
         const dbData = await repository.search({});
+        return new Response(dbData, 200);
+    }
+
+    // Associate media to software
+    public async associateMedia(data: any, softwareId: string): Promise<Response> {
+        const repository: SoftwareRepository = new SoftwareRepository();
+        const mediaRepository: MediaRepository = new MediaRepository();
+
+        const createdMedia = await mediaRepository.create(data);
+        const dbData: any = await repository.associateMedia(createdMedia.id, softwareId);
+
         return new Response(dbData, 200);
     }
 
