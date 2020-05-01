@@ -87,7 +87,7 @@ window.addEventListener('load', () => {
             });
     }
 
-    
+    // Loads the image for the piece of software.
     const softwareItemImage = document.getElementById('software-detail--image');
     if(softwareItemImage){
         const softwareItemImageView = new SoftwareItemImageView(softwareItemImage);
@@ -130,7 +130,7 @@ window.addEventListener('load', () => {
             });
     }
 
-    
+    // Loads the image for the piece of hardware.
     const hardwareItemImage = document.getElementById('hardware-detail--image');
     if(hardwareItemImage){
         const hardwareItemImageView = new HardwareItemImageView(hardwareItemImage);
@@ -158,6 +158,7 @@ window.addEventListener('load', () => {
             })
     }
 
+    // Loads the description of the trade.
     const tradeDescription = document.getElementById('trade-detail');
     if(tradeDescription) {
         const tradeDescriptionView = new TradeDescriptionView(tradeDescription);

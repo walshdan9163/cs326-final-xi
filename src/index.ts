@@ -23,6 +23,7 @@ app.use('/js', express.static(path.resolve(__dirname + '/../dist-frontend')));
 
 
 // Define a route handler for the default home page
+// Paths not accessible to non-users route back to login page.
 app
     .get("/", (req, res) => {
         validate(req, res, (req, res: express.Response) => {
@@ -73,6 +74,7 @@ app
         })
     });
 
+// Checks for valid token.
 type validCallbackFunction = (req: express.Request, res: express.Response) => void;
 type invalidCallbackFunction = (res: express.Response) => void | null;
 const validate = (req: express.Request, res: express.Response, validCallback: validCallbackFunction, invalidCallback: invalidCallbackFunction = null) => {
@@ -207,6 +209,7 @@ app.post("/api/user", (req, res) => {
         });
 });
 
+// User: Login
 app.post("/api/user/login", (req, res) => {
     const controller = new UserController();
     controller.auth(req.body)
