@@ -88,4 +88,22 @@ export default class UserController extends AbstractController {
         const dbData: any = await repository.create(data);
         return new Response(dbData, 200)
     }
+
+    public async auth(data: any) {
+        if(!data.email && !data.password) {
+            return new Response({error: "Expected a email and password combination"}, 400);
+        }
+
+        const repository: UserRepository = new UserRepository();
+        const dbData: any = await repository.login(data);
+
+        if (dbData) {
+            const authenticationRecord = await repository.generateToken(dbData.id);
+            dbData.token = authenticationRecord.token;
+            return new Response(dbData, 200);
+        }
+        else {
+            return new Response({error: "Incorrect email or password."}, 301);
+        }
+    }
 };

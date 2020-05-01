@@ -1,5 +1,8 @@
+import UserRepository from "./repositories/UserRepository";
+
 require('dotenv').config();
 import express from "express";
+import cookieParser from "cookie-parser";
 import HardwareController from "./controllers/HardwareController";
 import SoftwareController from "./controllers/SoftwareController";
 import MediaController from "./controllers/MediaController";
@@ -13,6 +16,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
+app.use(cookieParser());
 app.use('/public', express.static(path.resolve(__dirname + '/../src/public')));
 app.use('/static', express.static(path.resolve(__dirname + '/../src/public/static')));
 app.use('/js', express.static(path.resolve(__dirname + '/../dist-frontend')));
@@ -21,10 +25,18 @@ app.use('/js', express.static(path.resolve(__dirname + '/../dist-frontend')));
 // Define a route handler for the default home page
 app
     .get("/", (req, res) => {
-        res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
+        validate(req, res, (req, res: express.Response) => {
+            res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
+        }, (res) => {
+            res.redirect('/login')
+        })
     })
     .get("/home", (req, res) => {
-        res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
+        validate(req, res, (req, res: express.Response) => {
+            res.sendFile(path.resolve(__dirname + '/../src/public/views/homepage.html'));
+        }, (res) => {
+            res.redirect('/login')
+        })
     })
     .get("/login", (req, res) => {
         res.sendFile(path.resolve(__dirname + '/../src/public/views/login.html'));
@@ -33,17 +45,59 @@ app
         res.sendFile(path.resolve(__dirname + '/../src/public/views/register.html'));
     })
     .get('/hardware/:hardwareId', (req,res) => {
-        res.sendFile(path.resolve(__dirname + '/../src/public/views/hardware.html'));
+        validate(req, res, (req, res: express.Response) => {
+            res.sendFile(path.resolve(__dirname + '/../src/public/views/hardware.html'));
+        }, (res) => {
+            res.redirect('/login')
+        })
     })
     .get('/software/:softwareId', (req,res) => {
-        res.sendFile(path.resolve(__dirname + '/../src/public/views/software.html'));
+        validate(req, res, (req, res: express.Response) => {
+            res.sendFile(path.resolve(__dirname + '/../src/public/views/software.html'));
+        }, (res) => {
+            res.redirect('/login')
+        })
     })
     .get('/account', (req,res) => {
-        res.sendFile(path.resolve(__dirname + '/../src/public/views/accountpage.html'));
+        validate(req, res, (req, res: express.Response) => {
+            res.sendFile(path.resolve(__dirname + '/../src/public/views/accountpage.html'));
+        }, (res) => {
+            res.redirect('/login')
+        })
     })
     .get('/trade/:tradeId', (req,res) => {
-        res.sendFile(path.resolve(__dirname + '/../src/public/views/trade.html'));
+        validate(req, res, (req, res: express.Response) => {
+            res.sendFile(path.resolve(__dirname + '/../src/public/views/trade.html'));
+        }, (res) => {
+            res.redirect('/login')
+        })
     });
+
+type validCallbackFunction = (req: express.Request, res: express.Response) => void;
+type invalidCallbackFunction = (res: express.Response) => void | null;
+const validate = (req: express.Request, res: express.Response, validCallback: validCallbackFunction, invalidCallback: invalidCallbackFunction = null) => {
+    if (!invalidCallback) {
+        invalidCallback = (res: express.Response) => {
+            res.status(301).send({error: 'Incorrect or missing authorization cookies.'})
+        }
+    }
+
+    if (!req.cookies['user-id'] && !req.cookies.token) {
+        invalidCallback(res);
+    }
+
+    const userRepository = new UserRepository();
+
+    userRepository.validateToken(req.cookies['user-id'], req.cookies.token)
+        .then((valid) => {
+            if (valid) {
+                validCallback(req, res)
+            }
+            else {
+                invalidCallback(res)
+            }
+        });
+}
 
 // Hardware: Create
 app.post("/api/hardware", (req, res) => {
@@ -127,7 +181,7 @@ app.get("/api/softwaremedia/:softwareId", (req, res) => {
 });
 
 // Media: Get ID of media related to hardware ID
-app.get("/api/hardwaremedia/:hardwareId", (req, res) => {
+app.get("/api/hardware/:hardwareId/media", (req, res) => {
     const controller = new HardwareController();
     controller.getRelatedMedia(parseInt(req.params.hardwareId, 10))
         .then((response: Response) => {
@@ -148,6 +202,14 @@ app.post("/api/tag", (req, res) => {
 app.post("/api/user", (req, res) => {
     const controller = new UserController();
     controller.post(req.body)
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
+});
+
+app.post("/api/user/login", (req, res) => {
+    const controller = new UserController();
+    controller.auth(req.body)
         .then((response: Response) => {
             res.send(response.toString());
         });
@@ -265,6 +327,15 @@ app.post("/api/trade/:tradeId/accept", (req, res) => {
 app.delete("/api/trade/:tradeId", (req, res) => {
     const controller = new TradeController();
     controller.delete(parseInt(req.params.tradeId))
+        .then((response: Response) => {
+            res.send(response.toString());
+        });
+});
+
+// Associates Media to Hardware
+app.post("/api/hardware/:hardwareId/add-media", (req, res) => {
+    const controller = new HardwareController();
+    controller.associateMedia(req.body, req.params.hardwareId)
         .then((response: Response) => {
             res.send(response.toString());
         });

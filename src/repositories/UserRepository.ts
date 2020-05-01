@@ -1,3 +1,4 @@
+import {sha512} from "js-sha512";
 import AbstractRepository from "./AbstractRepository";
 import User from "../entities/User";
 
@@ -13,8 +14,50 @@ export default class UserRepository extends AbstractRepository {
             RETURNING id, email
         `, [
             user.email,
-            user.password
+            sha512(user.password)
         ]);
+    }
+
+    async login(data: any): Promise<any> {
+        return this.db.oneOrNone(`
+            SELECT * FROM users
+            WHERE email=$1 AND password=$2
+        `,
+        [
+           data.email,
+           sha512(data.password)
+        ]);
+    }
+
+    async generateToken(id: number): Promise<any> {
+        // @ts-ignore
+        const UIDGenerator = require('uid-generator');
+        const uidgen = new UIDGenerator();
+
+        return this.db.one(`
+            INSERT INTO authentication
+            VALUES ($1,$2,$3)
+            RETURNING userid, token, exp
+        `, [
+            id,
+            uidgen.generateSync(),
+            // Set Expiration 24 hours into the future.
+            // @see https://i.ytimg.com/vi/UdvfS1JCaZo/maxresdefault.jpg
+            new Date(Math.floor(Date.now()) + 1000 * 60 * 60 * 24).toISOString()
+        ]);
+    }
+
+    async validateToken(id: number, token: string): Promise<boolean> {
+        const dbToken = await this.db.oneOrNone(`
+            SELECT * FROM authentication
+            WHERE userid=$1 AND token=$2 AND exp > $3
+        `, [
+            id,
+            token,
+            new Date(Date.now()).toISOString()
+        ]);
+
+        return !!dbToken;
     }
 
     // Deletes a user object by ID in the database.
