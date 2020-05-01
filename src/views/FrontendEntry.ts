@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import {HardwareListView} from './HardwareListView';
 import {TradeListView} from './TradeListView';
 import {SoftwareListView} from './SoftwareListView';
@@ -7,7 +8,6 @@ import {HardwareItemImageView} from './HardwareItemImageView';
 import {HardwareItemDescriptionView} from './HardwareItemDescriptionView';
 import {TradeDescriptionView} from './TradeDescriptionView';
 import Trade from '../entities/Trade';
-import { json } from 'express';
 
 window.addEventListener('load', () => {
 
@@ -141,11 +141,11 @@ window.addEventListener('load', () => {
         let mediaId: string = "";
         
 
-        fetch('/api/hardwaremedia/' + params[2])
+        fetch(`/api/hardware/${params[2]}/media`)
             .then((response) => response.json())
             .then((data) => {
                 if(data != null){
-                    mediaId = data.mediaId;
+                    mediaId = data.mediaid;
                     fetch('/api/media/' + mediaId)
                         .then((response) => response.json())
                         .then((data) => {
@@ -212,19 +212,16 @@ window.addEventListener('load', () => {
             const userEmail: string = (<HTMLInputElement>document.getElementById('register-email')).value;
             const userPassword: string = (<HTMLInputElement>document.getElementById('register-password')).value;
 
-            // TODO add more verification of input (email contains @, etc)
             if(userEmail === "" || userPassword === ""){
-                alert("Invalid email or password");
+                alert("Please fill out both fields.");
             }
             else {
-                // TODO Verify if email and password are legitimate
-
                 const data: any = {
                     email: userEmail,
                     password: userPassword
                 }
 
-                fetch(`/api/user`, {
+                fetch(`/api/user/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -235,8 +232,13 @@ window.addEventListener('load', () => {
                     .then((data) => {
                         if(data.id) {
                             alert("Successfully Logged In.");
-                            // TODO auth token?
+
+                            Cookies.set('token', data.token);
+                            Cookies.set('user-id', data.id);
+
                             location.pathname = '/account';
+                        } else {
+                            alert("Incorrect email or password.");
                         }
                     });
             }
