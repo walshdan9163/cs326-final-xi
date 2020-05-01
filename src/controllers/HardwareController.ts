@@ -2,6 +2,9 @@ import AbstractController from "./AbstractController";
 import Hardware from "../entities/Hardware";
 import Response from "../Response";
 import HardwareRepository from "../repositories/HardwareRepository";
+import UserRepository from "../repositories/UserRepository";
+import MediaRepository from "../repositories/MediaRepository";
+import Media from "../entities/Media";
 
 // NOTE: HOOKED UP TO THE DATABASE!
 export default class HardwareController extends AbstractController {
@@ -25,6 +28,17 @@ export default class HardwareController extends AbstractController {
         const repository: HardwareRepository = new HardwareRepository();
 
         const dbData: any = await repository.search({});
+        return new Response(dbData, 200);
+    }
+
+    // Associate media to hardware
+    public async associateMedia(data: any, hardwareId: string): Promise<Response> {
+        const repository: HardwareRepository = new HardwareRepository();
+        const mediaRepository: MediaRepository = new MediaRepository();
+
+        const createdMedia = await mediaRepository.create(data);
+        const dbData: any = await repository.associateMedia(createdMedia.id, hardwareId);
+
         return new Response(dbData, 200);
     }
 

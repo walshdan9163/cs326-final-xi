@@ -48,6 +48,21 @@ export default class HardwareRepository extends AbstractRepository {
         ]);
     }
 
+    // Associates a piece of media to hardware.
+    async associateMedia(mediaId: string, hardwareId: string): Promise<any> {
+
+
+        return this.db.one(`
+            INSERT INTO mediaRelation
+            VALUES ($1, $2, $3)
+            RETURNING mediaid, techid, techtype
+        `, [
+            mediaId,
+            hardwareId,
+            'hardware'
+        ]);
+    }
+
     // Returns all hardware from the database.
     async search(data: any): Promise<any> {
         return this.db.many(`
