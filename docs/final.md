@@ -21,27 +21,27 @@ Dan Walsh, Will Hammond, Jackson Weber
 User Interface
 --------------
 `/login`
-*image*
+![](images/login.png)
 Allows users to log into the website.
 
 `/register`
-*image*
+![](images/register.png)
 Allows users to register for the website.
 
 `/home`
-*image*
+![](images/home.png)
 Shows Software and Hardware on the site for the user to view.
 
 `/hardware/:hardwareId`
-*image*
+![](images/hardware.png)
 Shows all information and media associated with a piece of hardware.
 
 `/software/:softwareId`
-*image*
+![](images/software.png)
 Shows all information and media assocciated with a piece of software.
 
 `/account`
-*image*
+*image*</br>
 Shows the software, trades, and hardware that a user has.
 
 API
