@@ -87,6 +87,13 @@ Division of Labor
 ### Will Hammond ###
 
 ### Dan Walsh ###
+Modified database schema.</br>
+Added repositories for software, media and users.</br>
+Added controllers for software, media and users.</br>
+Created initial user registration.</br>
+Setup creation of many database tables in gulpfile.</br>
+Added fake data to task in gulpfile to populate the database.</br>
+Further styled login and register pages.</br>
 
 ### Jackson Weber ###
 Setup `pg-promise` in the project.</br>

@@ -161,6 +161,18 @@ be available.
 Division of Labor
 ------------------
 ### Dan Walsh ###
+User's Account page design.</br>
+Setup Heroku deployment, automated deployment</br>
+Created views to allow for dynamic data on homepage, user account page</br>
+Further styled webpages</br>
+Setup original routing with Express</br>
+Modified database schema.</br>
+Added repositories for software, media and users.</br>
+Added controllers for software, media and users.</br>
+Created initial user registration.</br>
+Setup creation of many database tables in gulpfile.</br>
+Added fake data to task in gulpfile to populate the database.</br>
+Further styled login and register pages.</br>
 
 ### Will Hammond ###
 
