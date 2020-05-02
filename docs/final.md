@@ -165,6 +165,24 @@ Division of Labor
 ### Will Hammond ###
 
 ### Jackson Weber ###
+Original wireframes</br>
+homepage design</br>
+Drew out API Planning/drafted original API</br>
+Created Controller setup</br>
+Created Original entities</br>
+Setup Gulp to compile both frontend and backend with single command (for Heroku/ease)</br>
+Created AbstractView system to manage frontend state change</br>
+Built initial routing setup.</br>
+Setup pg-promise in the project.</br>
+Setup dotenv for enviroment variable storage.</br>
+Connected database.</br>
+Configured Hardware entities/methods to use the database.</br>
+Drafted original DB schema.</br>
+Documented database design.</br>
+Configured Heroku to use Postgres DB.</br>
+Fixed viewing media on hardware and software pages.</br>
+User authorization and token validation.</br>
+Write final document.</br>
 
 Conclusion
 ----------
