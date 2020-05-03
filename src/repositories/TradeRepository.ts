@@ -12,9 +12,9 @@ export default class TradeRepository extends AbstractRepository {
             VALUES (DEFAULT, $1, $2, $3)
             RETURNING id
         `, [
-            trade.owner,
-            trade.recipient,
-            trade.hardwareToTrade.id
+            trade.ownerId,
+            trade.recipId,
+            trade.hardwareId
         ]);
     }
 
