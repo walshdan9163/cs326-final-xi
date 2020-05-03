@@ -395,30 +395,16 @@ window.addEventListener('load', () => {
     const createTradeButton = document.getElementById('create-trade-button');
     if(createTradeButton) {
         createTradeButton.addEventListener('click', () => {
-            /* const currentUrl: string = window.location.pathname;
+            const currentUrl: string = window.location.pathname;
             const hardwareId = currentUrl.split('/')[2];
-            const ownerId = "1" */
-            // change this with actual DB
-            const data: Trade = {
-                id: 1,
-                owner: {
-                    id: 1,
-                    email: 'user1@user.com',
-                    password: 'password'
-                },
-                recipient: {
-                    id: 2,
-                    email: 'toddhoward@bethesda.net',
-                    password: 'skyrim'
-                },
-                hardwareToTrade: {
-                    id: 1,
-                    name: "Apple II",
-                    description: "The Apple II"
-                },
-                accepted: false
-            };
-
+            const ownerId = "1"
+            const recipId = "2";
+            const data = {
+                ownerId: ownerId,
+                recipId: recipId,
+                hardwareId: hardwareId
+            }
+            
             fetch('/api/trade', {
                 method: 'POST',
                 headers: {

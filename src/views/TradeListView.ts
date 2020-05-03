@@ -1,14 +1,18 @@
 import { AbstractView } from "./AbstractView";
 import Trade from "../entities/Trade";
+import Hardware from "../entities/Hardware";
+import HardwareController from "../controllers/HardwareController";
+import Response from "../Response";
+
 
 export class TradeListView extends AbstractView {
     async onStateChange(): Promise<boolean> {
         // Validate state change.
         if(this.state.length > 0 &&
             this.state[0].id &&
-            this.state[0].owner &&
-            this.state[0].recipient &&
-            this.state[0].hardwareToTrade) {
+            this.state[0].ownerId &&
+            this.state[0].recipId &&
+            this.state[0].hardwareId) {
             return true;
         }
 
@@ -23,7 +27,16 @@ export class TradeListView extends AbstractView {
             const listElement = document.createElement('a');
             listElement.classList.add('list-group-item');
             listElement.classList.add('list-group-item-action');
-            let innerText: string = (trade.accepted ? 'PENDING: ' : '') + trade.hardwareToTrade.name;
+            const controller: HardwareController = new HardwareController();
+            let hardwareName: String;
+            fetch('/api/hardware/' + trade.hardwareId)
+            .then((response) => response.json())
+            .then((data) => {
+                if((data as Hardware).name) {
+                    hardwareName = data.name;
+                }
+            });
+            let innerText: string = (trade.accept ? 'PENDING: ' : '') + hardwareName;
             listElement.innerText = innerText;
             listElement.href = '/trade/' + trade.id;
 
@@ -34,6 +47,6 @@ export class TradeListView extends AbstractView {
     }
 
     handleTrade(trade: Trade) {
-        alert(trade.hardwareToTrade);
+        alert(trade.hardwareId);
     }
 }
