@@ -49,14 +49,14 @@ export default class TradeController extends AbstractController {
         }
 
         // Finds the index of the hardware to delete from the user and removes it.
-        dbData = userRepository.readUserHardware(owner.id);
+        dbData = await userRepository.readUserHardware(owner.id);
         const ownerHardware: any[] = dbData;
         const index: number = ownerHardware.findIndex(hardwareToDelete => hardwareToDelete.id === trade.hardwareId);
         if(index > -1) {
             owner.hardware.splice(index, 1);
             trade.accept = true;
-            userRepository.deleteUserHardware(''+trade.ownerId, trade.hardwareId);
-            userRepository.relateUserHardware(''+trade.recipId, trade.hardwareId);
+            await userRepository.deleteUserHardware(''+trade.ownerId, trade.hardwareId);
+            await userRepository.relateUserHardware(''+trade.recipId, trade.hardwareId);
             return new Response(trade, 200);
         }
 
