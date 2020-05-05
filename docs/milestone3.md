@@ -85,6 +85,12 @@ Division of Labor
 ------------------
 
 ### Will Hammond ###
+Modified Trade entity.</br>
+Added trade repository.</br>
+Changed trade controller to work with Postgres.</br>
+Added associateTag functions for media, software, hardware.</br>
+Implemented way for trades to be created.</br>
+Bug testing and fixing.</br>
 
 ### Dan Walsh ###
 Modified database schema.</br>
