@@ -202,11 +202,20 @@ window.addEventListener('load', () => {
         const currentUrl: string = window.location.pathname;
         const params: string[] = currentUrl.split('/');
 
-        fetch('/api/media/' + params[2])
+        let trade: Trade;
+        (async () => {
+            await fetch(`/api/trade/${params[2]}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    trade = data as Trade;
+                });
+
+        fetch('/api/media/' + trade.techid)
             .then((response) => response.json())
             .then((data) => {
                 tradeItemImageView.setState(data);
             });
+        })();
     }
 
     const userLogin = document.getElementById('login-button');
@@ -399,12 +408,12 @@ window.addEventListener('load', () => {
         createTradeButton.addEventListener('click', () => {
             const currentUrl: string = window.location.pathname;
             const hardwareId = currentUrl.split('/')[2];
-            const ownerId = "1"
-            const recipId = "2";
+            const ownerId: number = parseInt(prompt('What is the ID of the user you would like to trade with for this hardware?'));
+            const recipId = Cookies.get('user-id');
             const data = {
-                ownerId: ownerId,
-                recipId: recipId,
-                hardwareId: hardwareId
+                ownerid: ownerId,
+                recipid: recipId,
+                techid: hardwareId
             }
             
             fetch('/api/trade', {
@@ -431,6 +440,7 @@ window.addEventListener('load', () => {
             const currentUrl: string = window.location.pathname;
 
             const tradeId = currentUrl.split('/')[2];
+            console.log('0');
 
             fetch(`/api/trade/${tradeId}/accept`, {
                 method: 'POST',

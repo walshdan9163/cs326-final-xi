@@ -18,7 +18,7 @@ export default class TradeController extends AbstractController {
 
     // defines POST for creation of new trades
     public async post(data: any): Promise<Response> {
-        if (!(data as Trade).ownerId) {
+        if (!(data as Trade).ownerid) {
             return new Response({error: "Does not have expected fields for a trade."}, 400);
         }
 
@@ -34,29 +34,26 @@ export default class TradeController extends AbstractController {
         let dbData: any = await repository.read(tradeId);
         let trade: Trade = dbData as Trade;
 
-        if(!trade.ownerId) {
+        if(!trade.ownerid) {
             return new Response("Trade does not exist", 400);
         }
 
-        dbData = await userRepository.read(trade.ownerId);
-        const owner = dbData as User;
-        dbData = await userRepository.read(trade.recipId);
-        const recipient = dbData as User;
-
         // Ensures recipient doesn't already have the hardware
-        if(recipient.hardware.find(hardware => hardware.id === trade.hardwareId)){
+        dbData = await userRepository.readUserHardware(trade.recipid);
+        const recipHardware: Hardware[] = dbData as Hardware[];
+        if(recipHardware.find(hardware => hardware.id === trade.techid)){
             return new Response("Cannot add duplicate hardware to User.", 400);
         }
 
         // Finds the index of the hardware to delete from the user and removes it.
-        dbData = await userRepository.readUserHardware(owner.id);
-        const ownerHardware: any[] = dbData;
-        const index: number = ownerHardware.findIndex(hardwareToDelete => hardwareToDelete.id === trade.hardwareId);
+        dbData = await userRepository.readUserHardware(trade.ownerid);
+        const ownerHardware: Hardware[] = dbData as Hardware[];
+        const index: number = ownerHardware.findIndex(hardwareToDelete => hardwareToDelete.id === trade.techid);
         if(index > -1) {
-            owner.hardware.splice(index, 1);
             trade.accept = true;
-            await userRepository.deleteUserHardware(''+trade.ownerId, trade.hardwareId);
-            await userRepository.relateUserHardware(''+trade.recipId, trade.hardwareId);
+            await repository.update(trade.id);
+            await userRepository.deleteUserHardware(''+trade.ownerid, trade.techid);
+            await userRepository.relateUserHardware(''+trade.recipid, trade.techid);
             return new Response(trade, 200);
         }
 
@@ -67,8 +64,8 @@ export default class TradeController extends AbstractController {
     public async delete(id: number): Promise<Response> {
         
         const repository: TradeRepository = new TradeRepository();
-        await repository.delete(id);
+        const dbData = await repository.delete(id);
 
-        return new Response("Trade rejected", 200);
+        return new Response(dbData, 200);
     }
 }

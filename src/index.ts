@@ -318,9 +318,9 @@ app.post("/api/trade", (req, res) => {
 });
 
 // Accepts trade
-app.post("/api/trade/:tradeId/accept", (req, res) => {
+app.post("/api/trade/:tradeid/accept", (req, res) => {
     const controller = new TradeController();
-    controller.accept(parseInt(req.params.tradeId, 10))
+    controller.accept(parseInt(req.params.tradeid, 10))
         .then((response: Response) => {
             res.send(response.toString());
         });

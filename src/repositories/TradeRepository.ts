@@ -9,12 +9,12 @@ export default class TradeRepository extends AbstractRepository {
 
         return this.db.one(`
             INSERT INTO trade
-            VALUES (DEFAULT, $1, $2, $3)
+            VALUES (DEFAULT, $1, $2, $3, false)
             RETURNING id
         `, [
-            trade.ownerId,
-            trade.recipId,
-            trade.hardwareId
+            trade.ownerid,
+            trade.recipid,
+            trade.techid
         ]);
     }
 
@@ -32,7 +32,7 @@ export default class TradeRepository extends AbstractRepository {
     async update(id: number): Promise<any> {
         return this.db.none(`
             UPDATE trade
-            SET accepted=true
+            SET accept=true
             WHERE id=$1
         `, [
             id
@@ -41,9 +41,10 @@ export default class TradeRepository extends AbstractRepository {
 
     // Deletes (rejects) trade
     async delete(id: number): Promise<any> {
-        return this.db.none(`
+        return this.db.one(`
             DELETE FROM trade
             WHERE id=$1
+            RETURNING id
         `, [
             id
         ]);

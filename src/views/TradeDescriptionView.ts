@@ -1,13 +1,14 @@
 import { AbstractView } from "./AbstractView";
+import User from "../entities/User";
 
 export class TradeDescriptionView extends AbstractView {
     async onStateChange(): Promise<boolean> {
         // Validate state change.
         if(this.state.length > 0 &&
-            this.state[0].id &&
-            this.state[0].owner &&
-            this.state[0].recipient &&
-            this.state[0].hardwareToTrade) {
+            this.state.id &&
+            this.state.ownerid &&
+            this.state.recipid &&
+            this.state.techid) {
             return true;
         }
 
@@ -21,25 +22,44 @@ export class TradeDescriptionView extends AbstractView {
 
         const item = document.createElement('div');
 
+        
+
         // add trade header
         const itemHeader = document.createElement('h5');
         let icon = document.createElement('i');
         icon.setAttribute('data-feather', 'phone-call');
         itemHeader.appendChild(icon); //TODO fix this
-        itemHeader.innerText = this.state["accepted"] ? 'COMPLETED' : 'PENDING';
+        itemHeader.innerText = this.state["accept"] ? 'COMPLETED' : 'PENDING';
         itemHeader.classList.add('card-title');
         item.appendChild(itemHeader);
+
+        (async () => {
+
+        
+        let owner: User;
+        let recip: User;
+
+        await fetch(`/api/user/${this.state.ownerid}`)
+            .then((response) => response.json())
+            .then((data) => {
+                owner = data as User;
+            });
+        await fetch(`/api/user/${this.state.recipid}`)
+            .then((response) => response.json())
+            .then((data) => {
+                recip = data as User;
+            });
 
         // add trade details
         const description = document.createElement('p');
         description.innerHTML = 
-            'Owner: ' + this.state["owner"].email + `<br>` +
-            'Recipient: ' + this.state["recipient"].email + `<br>`;
+            'Owner: ' + owner.email + `<br>` +
+            'Recipient: ' + recip.email + `<br>`;
         description.classList.add('card-text');
         item.appendChild(description);
 
         returnElement.appendChild(item);
-
+        })();
         return returnElement;
     }
 }

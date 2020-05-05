@@ -3,8 +3,8 @@ import Hardware from "./Hardware";
 
 export default interface Trade {
     id: number;
-    ownerId: number;
-    recipId: number;
-    hardwareId: number;
+    ownerid: number;
+    recipid: number;
+    techid: number;
     accept: boolean;
 }
