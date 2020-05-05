@@ -1,5 +1,6 @@
 import AbstractController from "./AbstractController";
 import SoftwareRepository from "../repositories/SoftwareRepository";
+import TagRepository from "../repositories/TagRepository";
 import Software from "../entities/Software";
 import Response from "../Response";
 import MediaRepository from "../repositories/MediaRepository";
@@ -33,6 +34,18 @@ export default class SoftwareController extends AbstractController {
 
         const createdMedia = await mediaRepository.create(data);
         const dbData: any = await repository.associateMedia(createdMedia.id, softwareId);
+
+        return new Response(dbData, 200);
+    }
+
+    // Associate tag to media
+    public async associateTag(data: any, softwareId: string): Promise<Response> {
+        const repository: SoftwareRepository = new SoftwareRepository();
+        const tagRepository: TagRepository = new TagRepository();
+
+        const name = data as string;
+        let tag = await tagRepository.create(name);
+        const dbData: any = await repository.associateTag(tag, softwareId);
 
         return new Response(dbData, 200);
     }

@@ -61,6 +61,19 @@ export default class SoftwareRepository extends AbstractRepository {
         ]);
     }
 
+    // Associates a tag to software.
+    async associateTag(tagId: string, softwareId: string) {
+        return this.db.one(`
+            INSERT INTO tagRelation
+            VALUES ($1, $2, $3)
+            RETURNING tagid, techid, techtype
+            `, [
+                tagId,
+                softwareId,
+                'software'
+        ]);
+    }
+
     // Returns all software from the database.
     async search(data: any): Promise<any> {
         return this.db.any(`

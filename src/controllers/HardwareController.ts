@@ -4,6 +4,7 @@ import Response from "../Response";
 import HardwareRepository from "../repositories/HardwareRepository";
 import UserRepository from "../repositories/UserRepository";
 import MediaRepository from "../repositories/MediaRepository";
+import TagRepository from "../repositories/TagRepository";
 import Media from "../entities/Media";
 
 // NOTE: HOOKED UP TO THE DATABASE!
@@ -38,6 +39,18 @@ export default class HardwareController extends AbstractController {
 
         const createdMedia = await mediaRepository.create(data);
         const dbData: any = await repository.associateMedia(createdMedia.id, hardwareId);
+
+        return new Response(dbData, 200);
+    }
+
+    // Associate tag to media
+    public async associateTag(data: any, hardwareId: string): Promise<Response> {
+        const repository: HardwareRepository = new HardwareRepository();
+        const tagRepository: TagRepository = new TagRepository();
+
+        const name = data as string;
+        let tag = await tagRepository.create(name);
+        const dbData: any = await repository.associateTag(tag, hardwareId);
 
         return new Response(dbData, 200);
     }

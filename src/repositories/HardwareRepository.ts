@@ -70,6 +70,19 @@ export default class HardwareRepository extends AbstractRepository {
         `);
     }
 
+    // Associates a tag to hardware.
+    async associateTag(tagId: string, hardwareId: string) {
+        return this.db.one(`
+            INSERT INTO tagRelation
+            VALUES ($1, $2, $3)
+            RETURNING tagid, techid, techtype
+            `, [
+                tagId,
+                hardwareId,
+                'hardware'
+        ]);
+    }
+
     // Updates a hardware object by ID with new data in the database.
     async update(id: number, data: any): Promise<any> {
         const hardware = data as Hardware;

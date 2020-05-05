@@ -45,6 +45,19 @@ export default class MediaRepository extends AbstractRepository {
         `);
     }
 
+    // Associates a tag to software.
+    async associateTag(tagId: string, mediaId: string) {
+        return this.db.one(`
+            INSERT INTO tagRelation
+            VALUES ($1, $2, $3)
+            RETURNING tagid, techid, techtype
+            `, [
+                tagId,
+                mediaId,
+                'media'
+        ]);
+    }
+
     // Updates a media object by ID with new data in the database.
     async update(id: number, data: any): Promise<any> {
         const media = data as Media;
