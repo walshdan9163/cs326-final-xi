@@ -27,8 +27,9 @@ window.addEventListener('load', () => {
     const accountHardwareList = document.getElementById('account-hardware-list');
     if(accountHardwareList){
         const accountHardwareListView = new HardwareListView(accountHardwareList);
+        const userId = Cookies.get('user-id');
 
-        fetch("/api/user/1/hardware")
+        fetch(`/api/user/${userId}/hardware`)
             .then((response) => response.json())
             .then((data) => {
                 accountHardwareListView.setState(data);
@@ -39,8 +40,8 @@ window.addEventListener('load', () => {
     const accountTradeList = document.getElementById('account-trade-list');
     if(accountTradeList) {
         const accountTradeListView = new TradeListView(accountTradeList);
-
-        fetch("/api/user/1/trade")
+        const userId = Cookies.get('user-id');
+        fetch(`/api/user/${userId}/trade`)
             .then((response) => response.json())
             .then((data) => {
                 accountTradeListView.setState(data);
@@ -63,8 +64,9 @@ window.addEventListener('load', () => {
     const accountSoftwareList = document.getElementById('account-software-list');
     if(accountSoftwareList){
         const accountSoftwareListView = new SoftwareListView(accountSoftwareList);
+        const userId = Cookies.get('user-id');
 
-        fetch("/api/user/1/software")
+        fetch(`/api/user/${userId}/software`)
             .then((response) => response.json())
             .then((data) => {
                 accountSoftwareListView.setState(data);
@@ -284,7 +286,7 @@ window.addEventListener('load', () => {
     if(addHardwareButton) {
         addHardwareButton.addEventListener('click', () => {
             // Will need to get userId properly later.
-            const userId: string = "1";
+            const userId: string = Cookies.get('user-id');
             const currentUrl: string = window.location.pathname;
 
             const hardwareToAdd = currentUrl.split('/')[2];
@@ -312,7 +314,7 @@ window.addEventListener('load', () => {
     if(deleteHardwareButton) {
         deleteHardwareButton.addEventListener('click', () => {
             // Will need to get userId properly later.
-            const userId: string = "1";
+            const userId: string = Cookies.get('user-id');
             const currentUrl: string = window.location.pathname;
 
             const hardwareToDelete = currentUrl.split('/')[2];
@@ -340,7 +342,7 @@ window.addEventListener('load', () => {
     if(addSoftwareButton) {
         addSoftwareButton.addEventListener('click', () => {
             // Will need to get userId properly later.
-            const userId: string = "1";
+            const userId: string = Cookies.get('user-id');
             const currentUrl: string = window.location.pathname;
 
             const softwareToAdd = currentUrl.split('/')[2];
@@ -368,7 +370,7 @@ window.addEventListener('load', () => {
     if(deleteSoftwareButton) {
         deleteSoftwareButton.addEventListener('click', () => {
             // Will need to get userId properly later.
-            const userId: string = "1";
+            const userId: string = Cookies.get('user-id');
             const currentUrl: string = window.location.pathname;
 
             const softwareToDelete = currentUrl.split('/')[2];
