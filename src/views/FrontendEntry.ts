@@ -181,16 +181,17 @@ window.addEventListener('load', () => {
 
         const currentUrl: string = window.location.pathname;
         const params: string[] = currentUrl.split('/');
-        // let trade: Trade;
 
-        /* fetch('/api/trade/' + params[2])
-            .then((response) => console.log(response.json()))
-            .then((data) => trade = ((data as unknown) as Trade)); */
-
-        fetch('/api/hardware/' + params[2])
+        fetch('/api/trade/' + params[2])
             .then((response) => response.json())
             .then((data) => {
-                tradeItemDescriptionView.setState(data);
+                console.log(data)
+                const trade = (data as unknown) as Trade;
+                fetch('/api/hardware/' + trade.techid)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        tradeItemDescriptionView.setState(data);
+                    });
             });
     }
 
