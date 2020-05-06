@@ -5,16 +5,15 @@ export default class TradeRepository extends AbstractRepository {
 
     // Creates new trade
     async create(data: any): Promise<any> {
-        const trade = data as Trade;
 
         return this.db.one(`
             INSERT INTO trade
             VALUES (DEFAULT, $1, $2, $3, false)
             RETURNING id
         `, [
-            trade.ownerid,
-            trade.recipid,
-            trade.techid
+            data.ownerid,
+            data.recipid,
+            data.techid
         ]);
     }
 

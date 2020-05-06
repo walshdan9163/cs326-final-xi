@@ -408,10 +408,10 @@ window.addEventListener('load', () => {
         createTradeButton.addEventListener('click', () => {
             const currentUrl: string = window.location.pathname;
             const hardwareId = currentUrl.split('/')[2];
-            const ownerId: number = parseInt(prompt('What is the ID of the user you would like to trade with for this hardware?'));
+            const owneremail: string = prompt('What is the email of the user you would like to trade with for this hardware?');
             const recipId = Cookies.get('user-id');
             const data = {
-                ownerid: ownerId,
+                owneremail: owneremail,
                 recipid: recipId,
                 techid: hardwareId
             }

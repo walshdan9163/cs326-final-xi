@@ -18,12 +18,26 @@ export default class TradeController extends AbstractController {
 
     // defines POST for creation of new trades
     public async post(data: any): Promise<Response> {
-        if (!(data as Trade).ownerid) {
+        if (!(data.owneremail && data.recipid && data.techid)) {
             return new Response({error: "Does not have expected fields for a trade."}, 400);
         }
 
         const repository: TradeRepository = new TradeRepository();
-        const dbData: any = await repository.create(data);
+        const userRepository: UserRepository = new UserRepository();
+
+        const owner: User = await userRepository.readUserByEmail(data.owneremail);
+        console.log(owner);
+        if(!owner.id) {
+            return new Response("Owner does not exist", 400);
+        }
+
+        const trade: any = {
+            ownerid: owner.id,
+            recipid: data.recipid,
+            techid: data.techid
+        }
+
+        const dbData: any = await repository.create(trade);
         return new Response(dbData, 200);
     }
 

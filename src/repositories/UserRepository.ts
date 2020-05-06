@@ -105,6 +105,15 @@ export default class UserRepository extends AbstractRepository {
         ]);
     }
 
+    async readUserByEmail(email: string): Promise<any> {
+        return this.db.one(`SELECT * 
+        FROM users
+        WHERE email=$1`,
+        [
+            email
+        ]);
+    }
+
     async readUserSoftware(id: number): Promise<any> {
         return this.db.any(`SELECT s.id, s.name, s.description, uo.techtype
         FROM software s
