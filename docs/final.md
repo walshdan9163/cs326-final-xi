@@ -41,7 +41,7 @@ Shows all information and media associated with a piece of hardware.
 Shows all information and media assocciated with a piece of software.
 
 `/account`
-*image*</br>
+![](images/account.png)
 Shows the software, trades, and hardware that a user has.
 
 API
