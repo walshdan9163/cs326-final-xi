@@ -175,6 +175,17 @@ Added fake data to task in gulpfile to populate the database.</br>
 Further styled login and register pages.</br>
 
 ### Will Hammond ###
+Tech page design.</br>
+Implemented all of the funcitonality needed for trades (including entity, views, HTML pages, and API)</br>
+Styled webpages</br>
+Wrote API calls and routing</br>
+Tested API</br>
+Modified Trade entity.</br>
+Added trade repository.</br>
+Changed trade controller to work with Postgres.</br>
+Added associateTag functions for media, software, hardware.</br>
+Implemented way for trades to be created.</br>
+Bug testing and fixing.</br>
 
 ### Jackson Weber ###
 Original wireframes</br>
